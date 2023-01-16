@@ -1,0 +1,191 @@
+﻿<Page
+    x:Class="AudictiveMusicUWP.Gui.Pages.Artists"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudictiveMusicUWP.Gui.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="root">
+
+    <Page.Resources>
+        <CollectionViewSource x:Key="ListOfArtists"
+                              IsSourceGrouped="True"/>
+
+        
+
+
+        <DataTemplate x:Key="gridItemTemplate">
+            <Grid Margin="5" Background="Transparent" IsHoldingEnabled="True" Holding="Artist_Holding" RightTapped="Artist_RightTapped">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition MinHeight="40" />
+                </Grid.RowDefinitions>
+                <Border RequestedTheme="Dark" CornerRadius="120" Height="{Binding GridItemSize, ElementName=root, Mode=TwoWay}" Width="{Binding GridItemSize, ElementName=root, Mode=TwoWay}">
+                    <local:CircleImage Source="{Binding Image}" Glyph="" IsRevealEnabled="True" ActionClick="CircleImage_ActionClick" FallbackSource="ms-appx:///Assets/artist-error.png" ImageFailed="CircleImage_ImageFailed" />
+                </Border>
+                <TextBlock Margin="0,5,0,0" Grid.Row="1" Text="{Binding Name}" FontSize="12" TextWrapping="Wrap" TextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="listItemTemplate">
+            <Grid Margin="5" Background="Transparent" HorizontalAlignment="Stretch" IsHoldingEnabled="True" Holding="Artist_Holding" RightTapped="Artist_RightTapped">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border RequestedTheme="Dark" CornerRadius="120" Height="70" Width="70" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <local:CircleImage Source="{Binding Image}" Glyph="" ActionClick="CircleImage_ActionClick" FallbackSource="Assets\artist-error.png" ImageFailed="CircleImage_ImageFailed" />
+                </Border>
+                <TextBlock Margin="10,0,0,0" Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" FontSize="12" TextWrapping="Wrap" TextAlignment="Left" TextTrimming="CharacterEllipsis" MaxLines="2" />
+            </Grid>
+        </DataTemplate>
+
+
+        <Storyboard x:Key="OpenPageTransition">
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="ExitPageTransition">
+            <DoubleAnimation Duration="0:0:0.2" To="0.9" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="0.9" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.1" To="0" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+    </Page.Resources>
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <SuppressNavigationTransitionInfo />
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid>
+        <ProgressRing x:Name="progress" IsActive="true" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" Height="50" />
+        <Grid x:Name="layoutRoot" RenderTransformOrigin="0.5, 0.5" Opacity="0">
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleX="0.9" ScaleY="0.9" x:Name="layoutRootScale" />
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!--<TextBlock Text="" FontSize="200" Opacity="0.05" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.RowSpan="3" />-->
+            <Grid Grid.Row="0">
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.5" Color="{ThemeResource SystemChromeLowColor}" />
+                </Grid.Background>
+
+                <Grid Grid.Row="0" x:Name="topAppBar" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="48" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button x:Name="topPlay" IsEnabled="False" Click="topPlay_Click" Width="55" Content="" Style="{StaticResource IconButtonStyle}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" FontFamily="Segoe UI Symbol" />
+                        <Button x:Name="topAdd" IsEnabled="False" Click="topAdd_Click" Width="55" Content="" Style="{StaticResource IconButtonStyle}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" FontFamily="Segoe UI Symbol" />
+                        <Button x:Name="topMore" IsEnabled="False" Click="topMore_Click" Width="55" Content="" Style="{StaticResource IconButtonStyle}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" FontFamily="Segoe UI Symbol" />
+
+                    </StackPanel>
+
+                </Grid>
+
+
+            </Grid>
+
+            <SemanticZoom Grid.Row="1" ViewChangeStarted="SemanticZoom_ViewChangeStarted">
+                <SemanticZoom.ZoomedOutView>
+                    <GridView Padding="0,0,0,110" HorizontalAlignment="Center" 
+              ItemsSource="{Binding Source={StaticResource ListOfArtists}, Path=CollectionGroups}"
+              ItemTemplate="{StaticResource JumpTemplate}">
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid VerticalAlignment="Center" MaximumRowsOrColumns="8" Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </GridView>
+                </SemanticZoom.ZoomedOutView>
+
+                <SemanticZoom.ZoomedInView>
+                    <GridView Padding="0,0,0,110" ScrollViewer.IsHorizontalScrollChainingEnabled="False" ItemTemplate="{StaticResource gridItemTemplate}" HorizontalContentAlignment="Stretch" CanDragItems="False" DragItemsStarting="ArtistsList_DragItemsStarting" x:Name="ArtistsList" IsMultiSelectCheckBoxEnabled="True" SelectionMode="None" ItemsSource="{Binding Source={StaticResource ListOfArtists}}"
+                          IsItemClickEnabled="True" ItemClick="ArtistsList_ItemClick">
+                        <GridView.GroupStyle>
+                            <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource GroupHeaderTemplate}">
+                                <!--<GroupStyle.HeaderContainerStyle>
+                                    <Style TargetType="GridViewHeaderItem">
+                                        <Setter Property="Template" >
+                                            <Setter.Value>
+                                                --><!--Remove default rectangle border--><!--
+                                                <ControlTemplate TargetType="ContentControl">
+                                                    <ContentPresenter Content="{Binding}" />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.HeaderContainerStyle>-->
+                            </GroupStyle>
+                        </GridView.GroupStyle>
+                        <GridView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <AddDeleteThemeTransition />
+                                <!--<EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="250" />-->
+                            </TransitionCollection>
+                        </GridView.ItemContainerTransitions>
+                        <!--<GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Loaded="artistsWrapGrid_Loaded" MaximumRowsOrColumns="4" Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>-->
+                    </GridView>
+                </SemanticZoom.ZoomedInView>
+            </SemanticZoom>
+
+            <Grid Grid.Row="1" x:Name="selectionGrid" VerticalAlignment="Bottom" RequestedTheme="Dark" HorizontalAlignment="Right" Margin="20,20,20,130">
+                <Border x:Name="selectionBlur" SizeChanged="selectionBlur_SizeChanged" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="30" />
+                <Border x:Name="selection" CornerRadius="30" Tapped="selection_Tapped">
+                    <Border.Background>
+                        <SolidColorBrush x:Name="selectionLabelBackground" Opacity="0.8" Color="{ThemeResource SystemChromeGrayColor}" />
+                    </Border.Background>
+                    <TextBlock Text="" x:Name="selectedItemsLabel" Visibility="Collapsed" VerticalAlignment="Center" Margin="20,0,80,0" FontSize="16" IsTextScaleFactorEnabled="False" FontWeight="Bold" />
+                </Border>
+                <Button Content="" x:Name="selectButton" HorizontalAlignment="Right" Click="selectButton_Click" FontSize="17" Style="{StaticResource CircleButtonStyle}" Width="60" Height="60">
+                    <Button.Background>
+                        <SolidColorBrush Color="{ThemeResource SystemChromeGrayColor}" />
+                    </Button.Background>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

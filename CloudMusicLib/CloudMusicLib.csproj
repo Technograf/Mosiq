@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\WinObjC.Language.0.2.170510\build\WinObjC.Language.props" Condition="Exists('..\packages\WinObjC.Language.0.2.170510\build\WinObjC.Language.props')" />
+  <Import Project="..\packages\WinObjC.Logging.0.2.170510\build\WinObjC.Logging.props" Condition="Exists('..\packages\WinObjC.Logging.0.2.170510\build\WinObjC.Logging.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{169FA6F4-B3E6-4FB2-A32A-0E5D7B4D2F57}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CloudMusicLib</RootNamespace>
+    <AssemblyName>CloudMusicLib</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Common\Delegates.cs" />
+    <Compile Include="CoreLibrary\CloudAlbum.cs" />
+    <Compile Include="CoreLibrary\CloudArtist.cs" />
+    <Compile Include="CoreLibrary\CloudGenericList.cs" />
+    <Compile Include="CoreLibrary\CloudPlaylist.cs" />
+    <Compile Include="CoreLibrary\CloudPlaylistList.cs" />
+    <Compile Include="CoreLibrary\CloudUser.cs" />
+    <Compile Include="ServiceCore\ICloudConnection.cs" />
+    <Compile Include="ServiceCore\CloudHttpHelper.cs" />
+    <Compile Include="ServiceCore\CloudMan.cs" />
+    <Compile Include="CoreLibrary\CloudTracklist.cs" />
+    <Compile Include="CoreLibrary\CloudTrack.cs" />
+    <Compile Include="ServiceCore\CloudService.cs" />
+    <Compile Include="ServiceCore\LazyLoad.cs" />
+    <Compile Include="ServiceCore\ServiceCommands.cs" />
+    <Compile Include="ServiceCore\ServiceMethod.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceCore\ServiceResult.cs" />
+    <Compile Include="ServiceCore\ServiceResultCollection.cs" />
+    <Compile Include="SoundCloudService\ScConnection.cs" />
+    <Compile Include="SoundCloudService\ScLazyTracklist.cs" />
+    <Compile Include="SoundCloudService\ScParser.cs" />
+    <Compile Include="SoundCloudService\ScPlaylistsResult.cs" />
+    <Compile Include="SoundCloudService\ScTracksResult.cs" />
+    <Compile Include="SoundCloudService\SoundCloudMethods\ScAuthorizationMethod.cs" />
+    <Compile Include="SoundCloudService\ScApiEnum.cs" />
+    <Compile Include="SoundCloudService\ScApi.cs" />
+    <Compile Include="SoundCloudService\SoundCloudMethods\ScInitMethod.cs" />
+    <Compile Include="SoundCloudService\SoundCloudMethods\ScGetUserPlaylistMethod.cs" />
+    <Compile Include="SoundCloudService\SoundCloudMethods\ScPlaylistsSearchMethod.cs" />
+    <Compile Include="SoundCloudService\SoundCloudMethods\ScTracksSearch.cs" />
+    <Compile Include="SoundCloudService\SoundCloudService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\portable-net45+win8+wpa81+wp8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\WinObjC.Logging.0.2.170510\build\WinObjC.Logging.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Logging.0.2.170510\build\WinObjC.Logging.props'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Logging.0.2.170510\build\WinObjC.Logging.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Logging.0.2.170510\build\WinObjC.Logging.targets'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Language.0.2.170510\build\WinObjC.Language.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Language.0.2.170510\build\WinObjC.Language.props'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Language.0.2.170510\build\WinObjC.Language.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Language.0.2.170510\build\WinObjC.Language.targets'))" />
+  </Target>
+  <Import Project="..\packages\WinObjC.Logging.0.2.170510\build\WinObjC.Logging.targets" Condition="Exists('..\packages\WinObjC.Logging.0.2.170510\build\WinObjC.Logging.targets')" />
+  <Import Project="..\packages\WinObjC.Language.0.2.170510\build\WinObjC.Language.targets" Condition="Exists('..\packages\WinObjC.Language.0.2.170510\build\WinObjC.Language.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

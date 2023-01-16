@@ -1,0 +1,3 @@
+Status,Module,File Time Stamp,Link Time Stamp,File Size,Attr.,Link Checksum,Real Checksum,CPU,Subsystem,Symbols,Preferred Base,Actual Base,Virtual Size,Load Order,File Ver,Product Ver,Image Ver,Linker Ver,OS Ver,Subsystem Ver
+?,"MSCOREE.DLL","Error opening file. Не удается найти указанный файл (2).",,,,,,,,,,,,,,,,,,
+,"c:\users\wikiz\desktop\cloudmusic-master\cloudmusiclib\bin\debug\CLOUDMUSICLIB.DLL",2020-03-23 18:19:14,2020-03-23 18:19:14,65536,A,0x00000000,0x0001CC5F,x86,Console,"CV",0x10000000,Unknown,0x00016000,Not Loaded,1.0.0.0,1.0.0.0,0.0,48.0,4.0,4.0

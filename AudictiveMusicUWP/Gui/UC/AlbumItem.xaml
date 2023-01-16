@@ -1,0 +1,128 @@
+﻿<UserControl
+    x:Class="AudictiveMusicUWP.Gui.UC.AlbumItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudictiveMusicUWP.Gui.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="using:AudictiveMusicUWP.Gui.Util"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    x:Name="root">
+
+    <UserControl.Resources>
+        <converter:RequestedThemeByColorConverter x:Key="requestedThemeByColorConverter" />
+
+        <Storyboard x:Key="hoverAnimation">
+            <DoubleAnimation Duration="0:0:0.2" To="1.05" Storyboard.TargetName="gridScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1.05" Storyboard.TargetName="gridScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <!--<DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>-->
+        </Storyboard>
+        
+        <Storyboard x:Key="restoreAnimation">
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="gridScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="gridScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <!--<DoubleAnimation Duration="0:0:0.1" To="0" Storyboard.TargetName="buttonsArea" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <ObjectAnimationUsingKeyFrames BeginTime="0:0:0.1" Storyboard.TargetName="buttonsArea" Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Collapsed" />
+            </ObjectAnimationUsingKeyFrames>-->
+        </Storyboard>
+
+        <!--<Storyboard x:Key="longPressAnimation">
+            <DoubleAnimation Duration="0:0:0.2" To="1.05" Storyboard.TargetName="gridScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1.05" Storyboard.TargetName="gridScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation BeginTime="0:0:0.2" Duration="0:0:0.1" To="1" Storyboard.TargetName="buttonsArea" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <ObjectAnimationUsingKeyFrames BeginTime="0:0:0.2" Storyboard.TargetName="buttonsArea" Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>-->
+    </UserControl.Resources>
+
+
+    <Border RequestedTheme="{Binding Color, Converter={StaticResource requestedThemeByColorConverter}}" CornerRadius="4" Margin="5" RenderTransformOrigin="0.5,0.5">
+        <Border.RenderTransform>
+            <ScaleTransform x:Name="gridScale" ScaleX="1" ScaleY="1" />
+        </Border.RenderTransform>
+
+        <Grid Width="{Binding ItemLength, ElementName=root}" PointerReleased="Grid_PointerReleased" PointerCanceled="repeatButton_PointerExited" Holding="Grid_Holding" RightTapped="Grid_RightTapped">
+            <Grid.Background>
+                <SolidColorBrush Opacity="1" Color="{Binding Color}" />
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding ItemLength, ElementName=root}" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid Background="Gray" Height="{Binding ItemLength, ElementName=root}" Width="{Binding ItemLength, ElementName=root}">
+                <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF737373" />
+                <Image Source="{Binding Image}" ImageOpened="AlbumCover_ImageOpened" Opacity="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <Border x:Name="albumItemOverlay" Opacity="0">
+                    <Border.Background>
+                        <SolidColorBrush Color="{Binding Color}" Opacity="1" />
+                    </Border.Background>
+                    <!--<Button IsHitTestVisible="False" Style="{StaticResource IconButtonStyle}" Content="" FontSize="30" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" x:Name="playAlbumButton" VerticalAlignment="Center" HorizontalAlignment="Center" Click="playAlbumButton_Click" />-->
+                </Border>
+                <RepeatButton Visibility="Visible" Interval="1000" x:Name="repeatButton" ClickMode="Hover" Click="repeatButton_Click" PointerEntered="repeatButton_PointerEntered" PointerReleased="repeatButton_PointerExited" PointerPressed="repeatButton_PointerExited" PointerExited="repeatButton_PointerExited" PointerCanceled="repeatButton_PointerExited" PointerCaptureLost="repeatButton_PointerExited" VerticalAlignment="Stretch" Delay="1000" RequiresPointer="WhenEngaged" HorizontalAlignment="Stretch" Opacity="0" />
+            </Grid>
+            <StackPanel Margin="7,7,27,7" Grid.Column="0" Grid.Row="1">
+                <TextBlock Margin="0,5,0,0" Grid.Row="1" Text="{Binding Name}" FontSize="13" FontWeight="Bold" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Left" />
+                <TextBlock Margin="0,5,0,5" Grid.Row="2" Text="{Binding Artist}" FontSize="10" FontWeight="Medium" TextWrapping="NoWrap" TextAlignment="Left" />
+            </StackPanel>
+            <Button RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" FontWeight="Bold" Margin="0,3,-5,0" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Style="{StaticResource IconButtonStyle}" Content="" Tapped="action_Click" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" Grid.Row="1">
+                <Button.RenderTransform>
+                    <CompositeTransform Rotation="-90" />
+                </Button.RenderTransform>
+            </Button>
+            <!--<StackPanel x:Name="buttonsArea" Visibility="Collapsed" Opacity="0" Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+            <Button Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Style="{StaticResource SideMenuButtonStyle}" Tag="" Width="55" x:Name="playButton" Click="playButton_Click" FontSize="20"  />
+            <Button Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Style="{StaticResource SideMenuButtonStyle}" Tag="" Width="55" x:Name="shareButton" Click="shareButton_Click" FontSize="20"  />
+        </StackPanel>-->
+        </Grid>
+    </Border>
+
+</UserControl>

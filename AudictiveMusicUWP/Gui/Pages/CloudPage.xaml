@@ -1,0 +1,101 @@
+﻿<Page
+    x:Class="AudictiveMusicUWP.Gui.Pages.CloudPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Storyboard x:Key="OpenPageTransition">
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="ExitPageTransition">
+            <DoubleAnimation Duration="0:0:0.2" To="0.9" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="0.9" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.1" To="0" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+    </Page.Resources>
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <SuppressNavigationTransitionInfo />
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid>
+        <ProgressRing x:Name="progress" IsActive="true" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" Height="50" />
+        <Grid x:Name="layoutRoot" RenderTransformOrigin="0.5, 0.5" Opacity="1">
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleX="0.9" ScaleY="0.9" x:Name="layoutRootScale" />
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!--<TextBlock Text="" FontSize="200" Opacity="0.05" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.RowSpan="3" />-->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="48" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.5" Color="{ThemeResource SystemChromeLowColor}" />
+                </Grid.Background>
+                <TextBlock x:Name="pageTitle" x:Uid="Cloud" VerticalAlignment="Center" Margin="12,0" Text="Cloud" FontWeight="Bold" FontSize="25" TextTrimming="CharacterEllipsis" />
+                <Button Grid.Row="0" Grid.Column="2" Content="" x:Name="accButton" Click="accButton_Click" VerticalAlignment="Stretch" Width="55" FontWeight="Bold" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Style="{StaticResource IconButtonStyle}" />
+
+
+                <StackPanel x:Name="navigationButtons" Orientation="Horizontal" HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="1">
+                    <ToggleButton Style="{StaticResource CollectionToggleButtonStyle}" Content="playlists" x:Uid="MyMusicMenu" Checked="songsButton_Checked" x:Name="songsButton" Click="songsButton_Click" />
+                    <ToggleButton Style="{StaticResource CollectionToggleButtonStyle}" Content="search" x:Uid="SearchClMenu" Checked="searchButton_Checked" x:Name="searchButton" Click="searchButton_Click" />
+   
+
+
+                </StackPanel>
+
+
+            </Grid>
+            <Frame Grid.Row="1" x:Name="frame" Navigated="frame_Navigated" />
+        </Grid>
+    </Grid>
+</Page>

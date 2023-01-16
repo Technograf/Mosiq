@@ -1,0 +1,291 @@
+﻿<UserControl
+    x:Class="AudictiveMusicUWP.Gui.UC.Touch3D"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudictiveMusicUWP.Gui.UC"
+    xmlns:converter="using:AudictiveMusicUWP.Gui.Util"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="120"
+    d:DesignWidth="400"
+    RequestedTheme="Dark"
+    x:Name="root">
+
+    <UserControl.Resources>
+        <converter:FavoriteHeartConverter x:Key="FavoriteHeartConverter" />
+
+        <Storyboard x:Key="ShowAnimation" Completed="showAnimation_Completed">
+            <DoubleAnimation Duration="0:0:0.1" To="1" 
+                             Storyboard.TargetName="background" 
+                             Storyboard.TargetProperty="Opacity"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            
+            <DoubleAnimation Duration="0:0:0.1" To="1" 
+                             Storyboard.TargetName="iconsBorder" 
+                             Storyboard.TargetProperty="Opacity"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            
+            <DoubleAnimation Duration="0:0:0.2" To="1" 
+                             Storyboard.TargetName="loveScale" 
+                             Storyboard.TargetProperty="ScaleX"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1" 
+                             Storyboard.TargetName="loveScale" 
+                             Storyboard.TargetProperty="ScaleY"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+
+            <DoubleAnimation BeginTime="0:0:0.1" Duration="0:0:0.2" To="1" 
+                             Storyboard.TargetName="shareScale" 
+                             Storyboard.TargetProperty="ScaleX"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation BeginTime="0:0:0.1" Duration="0:0:0.2" To="1" 
+                             Storyboard.TargetName="shareScale" 
+                             Storyboard.TargetProperty="ScaleY"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+
+            <DoubleAnimation BeginTime="0:0:0.2" Duration="0:0:0.2" To="1" 
+                             Storyboard.TargetName="artistScale" 
+                             Storyboard.TargetProperty="ScaleX"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation BeginTime="0:0:0.2" Duration="0:0:0.2" To="1" 
+                             Storyboard.TargetName="artistScale" 
+                             Storyboard.TargetProperty="ScaleY"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation BeginTime="0:0:0.3" Duration="0:0:0.2" To="1" 
+                             Storyboard.TargetName="addScale" 
+                             Storyboard.TargetProperty="ScaleX"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation BeginTime="0:0:0.3" Duration="0:0:0.2" To="1" 
+                             Storyboard.TargetName="addScale" 
+                             Storyboard.TargetProperty="ScaleY"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="HideAnimation" Completed="hideAnimation_Completed">
+            <DoubleAnimation Duration="0:0:0.2" To="0" 
+                             Storyboard.TargetName="loveScale" 
+                             Storyboard.TargetProperty="ScaleX"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="0" 
+                             Storyboard.TargetName="loveScale" 
+                             Storyboard.TargetProperty="ScaleY"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+
+            <DoubleAnimation BeginTime="0:0:0.1" Duration="0:0:0.2" To="0" 
+                             Storyboard.TargetName="shareScale" 
+                             Storyboard.TargetProperty="ScaleX"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation BeginTime="0:0:0.1" Duration="0:0:0.2" To="0" 
+                             Storyboard.TargetName="shareScale" 
+                             Storyboard.TargetProperty="ScaleY"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+
+            <DoubleAnimation BeginTime="0:0:0.2" Duration="0:0:0.2" To="0" 
+                             Storyboard.TargetName="artistScale" 
+                             Storyboard.TargetProperty="ScaleX"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation BeginTime="0:0:0.2" Duration="0:0:0.2" To="0" 
+                             Storyboard.TargetName="artistScale" 
+                             Storyboard.TargetProperty="ScaleY"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation BeginTime="0:0:0.3" Duration="0:0:0.2" To="0" 
+                             Storyboard.TargetName="addScale" 
+                             Storyboard.TargetProperty="ScaleX"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation BeginTime="0:0:0.3" Duration="0:0:0.2" To="0" 
+                             Storyboard.TargetName="addScale" 
+                             Storyboard.TargetProperty="ScaleY"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4" EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation BeginTime="0:0:0.3" Duration="0:0:0.1" To="0" 
+                             Storyboard.TargetName="background" 
+                             Storyboard.TargetProperty="Opacity"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation BeginTime="0:0:0.3" Duration="0:0:0.1" To="0" 
+                             Storyboard.TargetName="iconsBorder" 
+                             Storyboard.TargetProperty="Opacity"
+                             EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="background" Background="#55000000" Opacity="0" PointerEntered="background_PointerEntered" PointerReleased="background_PointerReleased" />
+
+        <Grid x:Name="pointerArea" Canvas.ZIndex="2" Width="{Binding ElementName=iconsBorder, Path=ActualWidth}" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="love" Grid.Column="0" PointerEntered="love_PointerEntered" PointerReleased="love_PointerReleased" Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            <Grid x:Name="share" Grid.Column="1" PointerEntered="share_PointerEntered" PointerReleased="share_PointerReleased" Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            <Grid x:Name="artist" Grid.Column="2" PointerEntered="artist_PointerEntered" PointerReleased="artist_PointerReleased" Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            <Grid x:Name="add" Grid.Column="3" PointerEntered="add_PointerEntered" PointerReleased="add_PointerReleased" Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+
+        </Grid>
+
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="{Binding ElementName=root, Path=IconsPosition}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="actionName" Width="180" TextTrimming="CharacterEllipsis" Margin="0,0,0,15" IsHitTestVisible="False" FontSize="14" FontWeight="SemiBold" RequestedTheme="Dark" HorizontalAlignment="Center" TextAlignment="Center" />
+
+            <Border x:Name="iconsBorder" Width="200" HorizontalAlignment="Center" Opacity="0" Grid.Row="1" CornerRadius="25" Background="#DDFFFFFF">
+                <Grid x:Name="panel" Width="200" RequestedTheme="Dark">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="1" Grid.Column="0" CornerRadius="100" RenderTransformOrigin="0.5,0.5" Height="40" Width="40" Margin="5">
+                        <Grid.RenderTransform>
+                            <ScaleTransform x:Name="loveScale" ScaleX="0" ScaleY="0" />
+                        </Grid.RenderTransform>
+                        <Border CornerRadius="100">
+                            <Border.Background>
+                                <SolidColorBrush Color="Crimson"/>
+                            </Border.Background>
+                            <TextBlock Text="{Binding ElementName=root, Path=CurrentSong.IsFavorite, Converter={StaticResource FavoriteHeartConverter}}" FontFamily="Segoe MDL2 Assets" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </Grid>
+
+
+                    <Grid Grid.Row="1" Grid.Column="1" CornerRadius="100" Height="40" Width="40" Margin="5" RenderTransformOrigin="0.5,0.5">
+                        <Grid.RenderTransform>
+                            <ScaleTransform x:Name="shareScale" ScaleX="0" ScaleY="0" />
+                        </Grid.RenderTransform>
+                        <Border CornerRadius="100">
+                            <Border.Background>
+                                <SolidColorBrush Color="Blue" />
+                            </Border.Background>
+                            <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="2" CornerRadius="100" RenderTransformOrigin="0.5,0.5" Height="40" Width="40" Margin="5">
+                        <Grid.RenderTransform>
+                            <ScaleTransform x:Name="artistScale" ScaleX="0" ScaleY="0" />
+                        </Grid.RenderTransform>
+                        <Border CornerRadius="100">
+                            <Border.Background>
+                                <SolidColorBrush Color="Red"/>
+                            </Border.Background>
+                            <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="3" CornerRadius="100" RenderTransformOrigin="0.5,0.5" Height="40" Width="40" Margin="5">
+                        <Grid.RenderTransform>
+                            <ScaleTransform x:Name="addScale" ScaleX="0" ScaleY="0" />
+                        </Grid.RenderTransform>
+                        <Border CornerRadius="100">
+                            <Border.Background>
+                                <SolidColorBrush Color="#FFE1E165"/>
+                            </Border.Background>
+                            <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

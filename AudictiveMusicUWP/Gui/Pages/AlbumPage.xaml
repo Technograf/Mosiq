@@ -1,0 +1,109 @@
+﻿<Page
+    x:Class="AudictiveMusicUWP.Gui.Pages.AlbumPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudictiveMusicUWP.Gui.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Storyboard x:Key="OpenAnimation">
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="OpenPageTransition">
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+    </Page.Resources>
+    
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <SuppressNavigationTransitionInfo />
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid>
+        <ProgressRing x:Name="progress" IsActive="true" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" Height="50" />
+        <Grid x:Name="layoutRoot" RenderTransformOrigin="0.5, 0.5" Opacity="0">
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleX="0.9" ScaleY="0.9" x:Name="layoutRootScale" />
+            </Grid.RenderTransform>
+            <Rectangle x:Name="overlay" Grid.ColumnSpan="2" Opacity="0">
+                <Rectangle.Fill>
+                    <SolidColorBrush x:Name="overlayBrush" />
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <!--<Grid Background="{Binding ElementName=albumCover, Path=Background}" Opacity="0.03" />-->
+
+
+            <ScrollViewer ZoomMode="Disabled" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <local:AlbumHeader x:Name="header" Canvas.ZIndex="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" />
+
+                    <ListView Padding="0,0,0,110" IsItemClickEnabled="True" ItemClick="SongsList_ItemClick" Grid.Row="1" ScrollViewer.VerticalScrollMode="Disabled" SelectionMode="None" x:Name="SongsList">
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,5" HorizontalAlignment="Stretch" Background="Transparent" IsHoldingEnabled="True" Holding="SongItem_Holding" RightTapped="SongItem_RightTapped">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding Track}" FontSize="12" TextAlignment="Right" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" />
+
+                                    <TextBlock HorizontalAlignment="Left" Margin="0,5,0,0" Grid.Column="1" Grid.Row="0" Text="{Binding Title}" FontSize="14" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                                    <StackPanel Margin="0,5,0,5" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                                        <TextBlock Text="{Binding Artist}" FontSize="10" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                                        <TextBlock Text="" Margin="5,0,5,0" FontSize="6" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" />
+                                        <TextBlock Text="{Binding Album}" FontSize="10" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>

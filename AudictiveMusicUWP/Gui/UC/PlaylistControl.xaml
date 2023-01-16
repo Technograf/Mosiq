@@ -1,0 +1,94 @@
+﻿<UserControl
+    x:Class="AudictiveMusicUWP.Gui.UC.PlaylistControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudictiveMusicUWP.Gui.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <Storyboard x:Key="showDropAreaAnimation">
+            <DoubleAnimation Storyboard.TargetName="dropArea" Storyboard.TargetProperty="Opacity"
+                             To="1" Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="hideDropAreaAnimation">
+            <DoubleAnimation Storyboard.TargetName="dropArea" Storyboard.TargetProperty="Opacity"
+                             To="0" Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid" Opacity="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!--<Grid x:Name="blur" Grid.Row="0" />-->
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="dropArea" Drop="dropArea_Drop" DragEnter="dropArea_DragEnter" DragLeave="dropArea_DragLeave" Opacity="0" IsHitTestVisible="False" AllowDrop="True" Grid.Column="0" Grid.RowSpan="2">
+            <Grid.Background>
+                <SolidColorBrush Color="#FF7F7F7F" />
+            </Grid.Background>
+            <Rectangle Fill="#FFB90000" Opacity="0" x:Name="dropAreaOverlay" />
+
+            <TextBlock x:Name="playlistRemoveGlyph" IsHitTestVisible="False" Text="" FontFamily="Segoe UI Symbol" FontSize="28" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        </Grid>
+        <Grid x:Name="blurOverlay" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark" Grid.Row="0" Grid.Column="1" Opacity="0.8" />
+        <ProgressRing x:Name="progress" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" IsActive="False" />
+        <ListView RequestedTheme="Dark" Grid.Column="1" Grid.Row="0" CanReorderItems="True" CanDragItems="True" AllowDrop="True" DragItemsStarting="MusicPlaylist_DragItemsStarting" DragItemsCompleted="MusicPlaylist_DragItemsCompleted" ScrollViewer.HorizontalScrollMode="Auto" ScrollViewer.VerticalScrollMode="Enabled" Name="MusicPlaylist" ItemContainerStyle="{StaticResource PlaylistListViewItemStyle}">
+            <ListView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <PopupThemeTransition FromHorizontalOffset="100" FromVerticalOffset="0" />
+                    <AddDeleteThemeTransition />
+                    <ReorderThemeTransition />
+                </TransitionCollection>
+            </ListView.ItemContainerTransitions>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" Margin="0,5" Background="Transparent">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock HorizontalAlignment="Left" Margin="0,5,0,0" Grid.Row="0" Text="{Binding Title}" FontSize="14" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                        <StackPanel Margin="0,5,0,5" Orientation="Horizontal" Grid.Row="1">
+                            <TextBlock Text="{Binding Artist}" FontSize="10" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                            <TextBlock Text="" Margin="5,0,5,0" FontSize="6" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" />
+                            <TextBlock Text="{Binding Album}" FontSize="10" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid RequestedTheme="Dark" Grid.Row="1" Grid.Column="1" Name="BottomBar" VerticalAlignment="Bottom" MinHeight="48">
+            <Grid.Background>
+                <SolidColorBrush Color="{ThemeResource SystemChromeLowColor}" />
+            </Grid.Background>
+            <Button VerticalAlignment="Stretch" Width="55" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Style="{StaticResource IconButtonStyle}" FontFamily="Segoe UI Symbol" FontSize="22" Background="Transparent" Name="SavePlaylistButton" Click="SavePlaylist_Click" IsEnabled="True" Content="" HorizontalAlignment="Left" />
+                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Foreground="{ThemeResource ApplicationForegroundThemeBrush}" VerticalAlignment="Stretch" Style="{StaticResource IconButtonStyle}" FontFamily="Segoe UI Symbol" FontSize="22" Width="55" Background="Transparent" Name="MoveSongUpButton" Click="MoveSongUpButton_Click" Visibility="Collapsed" IsEnabled="False" Content="" HorizontalAlignment="Right" />
+                <Button Foreground="{ThemeResource ApplicationForegroundThemeBrush}" VerticalAlignment="Stretch" Style="{StaticResource IconButtonStyle}" FontFamily="Segoe UI Symbol" FontSize="22" Width="55" Background="Transparent" Name="RemoveSongButton" Click="RemoveSelectedSongs_Click" Visibility="Collapsed" IsEnabled="False" Content="" HorizontalAlignment="Right" />
+                <Button Foreground="{ThemeResource ApplicationForegroundThemeBrush}" VerticalAlignment="Stretch" Width="55" Style="{StaticResource IconButtonStyle}" FontFamily="Segoe UI Symbol" FontSize="22" Background="Transparent" Name="MoveSongDownButton" Click="MoveSongDownButton_Click" Visibility="Collapsed" IsEnabled="False" Content="" HorizontalAlignment="Right" />
+                <ToggleButton Checked="TurnOnEditMode" Unchecked="TurnOffEditMode" Width="55" Name="EditPlaylistModeButton" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="" Style="{StaticResource IconToggleButtonStyle}" FontFamily="Segoe UI Symbol" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" FontSize="22" IsTextScaleFactorEnabled="False" />
+                </StackPanel>-->
+        </Grid>
+    </Grid>
+</UserControl>

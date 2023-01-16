@@ -1,0 +1,54 @@
+﻿<UserControl
+    x:Class="AudictiveMusicUWP.Gui.UC.CircleImage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudictiveMusicUWP.Gui.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="100"
+    d:DesignWidth="100"
+    Opacity="1"
+    x:Name="root">
+
+    <UserControl.Resources>
+        <Storyboard x:Key="imageOpenedAnimation">
+            <DoubleAnimation To="1" Storyboard.TargetName="imageEllipse" Storyboard.TargetProperty="Opacity" Duration="0:0:0.5" />
+        </Storyboard>
+
+        <Storyboard x:Key="showPointerIndicatorAnimation">
+            <DoubleAnimation To="1" Storyboard.TargetName="pointerIndicator" Storyboard.TargetProperty="Opacity" Duration="0:0:0.2" />
+        </Storyboard>
+
+        <Storyboard x:Key="hidePointerIndicatorAnimation">
+            <DoubleAnimation To="0" Storyboard.TargetName="pointerIndicator" Storyboard.TargetProperty="Opacity" Duration="0:0:0.2" />
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Border x:Name="border" BorderBrush="{Binding Stroke, ElementName=root}" BorderThickness="{Binding StrokeThickness, ElementName=root}" PointerEntered="border_PointerEntered" PointerMoved="border_PointerMoved" PointerExited="border_PointerExited" PointerPressed="border_PointerPressed" PointerReleased="border_PointerReleased" PointerCanceled="border_PointerCanceled" PointerCaptureLost="border_PointerCaptureLost" SizeChanged="CircleImage_SizeChanged">
+        <Border.Background>
+            <ImageBrush x:Name="fallbackBrush" ImageSource="{Binding FallbackSource, ElementName=root}" />
+        </Border.Background>
+        <Grid Margin="0">
+            <!--<Ellipse>
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="fallbackBrush" />
+                </Ellipse.Fill>
+            </Ellipse>-->
+
+            <Ellipse x:Name="imageEllipse" Opacity="0">
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="image" ImageSource="{Binding Source, ElementName=root}" ImageOpened="image_ImageOpened" ImageFailed="image_ImageFailed" />
+                </Ellipse.Fill>
+            </Ellipse>
+
+            <Ellipse VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0" x:Name="pointerIndicator" IsHitTestVisible="False" >
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="pointerIndicatorBrush" Stretch="Uniform" Opacity="{Binding RevealOpacity, ElementName=root}" ImageSource="ms-appx:///Assets/point.png"/>
+                </Ellipse.Fill>
+            </Ellipse>
+
+            <!--<Button PointerEntered="border_PointerEntered" PointerMoved="border_PointerMoved" PointerExited="border_PointerExited" PointerPressed="border_PointerPressed" PointerReleased="border_PointerReleased" PointerCanceled="border_PointerCanceled" PointerCaptureLost="border_PointerCaptureLost" Style="{StaticResource IconButtonStyle}" Content="{Binding Glyph, ElementName=root}" FontSize="30" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" x:Name="actionButton" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed" Click="runAction_Click" />-->
+        </Grid>
+    </Border>
+</UserControl>

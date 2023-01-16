@@ -1,0 +1,826 @@
+﻿<UserControl
+    x:Class="AudictiveMusicUWP.Gui.UC.PlayerControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudictiveMusicUWP.Gui.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="60"
+    d:DesignWidth="800"
+    x:Name="root">
+
+    <UserControl.Resources>
+        <Style x:Key="ProgressSliderStyle" TargetType="Slider">
+            <Setter Property="Background" Value="{ThemeResource SliderTrackFill}"/>
+            <Setter Property="BorderThickness" Value="{ThemeResource SliderBorderThemeThickness}"/>
+            <Setter Property="Foreground" Value="{ThemeResource SliderTrackValueFill}"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="ManipulationMode" Value="None"/>
+            <Setter Property="UseSystemFocusVisuals" Value="True"/>
+            <Setter Property="FocusVisualMargin" Value="-7,0,-7,0"/>
+            <Setter Property="IsFocusEngagementEnabled" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Slider">
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <Grid.Resources>
+                                <Style x:Key="SliderThumbStyle" TargetType="Thumb">
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="20"/>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="HorizontalTrackRect">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTrackFillPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalTrackRect">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTrackFillPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="HorizontalThumb">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderThumbBackgroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="VerticalThumb">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderThumbBackgroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="SliderContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderContainerBackgroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="HorizontalDecreaseRect">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTrackValueFillPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>-->
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalDecreaseRect">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTrackValueFillPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="HeaderContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderHeaderForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="HorizontalDecreaseRect">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTrackValueFillDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="HorizontalTrackRect">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTrackFillDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalDecreaseRect">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTrackValueFillDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalTrackRect">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTrackFillDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="HorizontalThumb">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderThumbBackgroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="VerticalThumb">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderThumbBackgroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="TopTickBar">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTickBarFillDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BottomTickBar">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTickBarFillDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="LeftTickBar">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTickBarFillDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="RightTickBar">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTickBarFillDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="SliderContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderContainerBackgroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="HorizontalTrackRect">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTrackFillPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalTrackRect">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTrackFillPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="HorizontalThumb">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderThumbBackgroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="VerticalThumb">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderThumbBackgroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="SliderContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderContainerBackgroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="HorizontalDecreaseRect">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTrackValueFillPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>-->
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalDecreaseRect">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SliderTrackValueFillPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusEngagementStates">
+                                    <VisualState x:Name="FocusDisengaged"/>
+                                    <VisualState x:Name="FocusEngagedHorizontal">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.IsTemplateFocusTarget)" Storyboard.TargetName="SliderContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="False"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.IsTemplateFocusTarget)" Storyboard.TargetName="HorizontalThumb">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="True"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="FocusEngagedVertical">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.IsTemplateFocusTarget)" Storyboard.TargetName="SliderContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="False"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.IsTemplateFocusTarget)" Storyboard.TargetName="VerticalThumb">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="True"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="HeaderContentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="{ThemeResource SliderHeaderForeground}" FontWeight="{ThemeResource SliderHeaderThemeFontWeight}" Margin="{ThemeResource SliderHeaderThemeMargin}" TextWrapping="Wrap" Visibility="Collapsed" x:DeferLoadStrategy="Lazy"/>
+                            <Grid x:Name="SliderContainer" Background="Transparent" PointerPressed="TickBar_PointerPressed" PointerReleased="TickBar_PointerReleased" Control.IsTemplateFocusTarget="True" Grid.Row="1">
+                                <Grid x:Name="HorizontalTemplate" MinHeight="44">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="18"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="18"/>
+                                    </Grid.RowDefinitions>
+                                    <Rectangle x:Name="HorizontalTrackRect" Grid.ColumnSpan="3" Fill="{TemplateBinding Background}" Height="{ThemeResource SliderTrackThemeHeight}" Grid.Row="1"/>
+                                    <Rectangle x:Name="HorizontalDecreaseRect" Fill="{TemplateBinding Foreground}" Grid.Row="1"/>
+                                    <TickBar x:Name="TopTickBar" Grid.ColumnSpan="3" Fill="{ThemeResource SliderTickBarFill}" Height="{ThemeResource SliderOutsideTickBarThemeHeight}" Margin="0,0,0,4" Visibility="Collapsed" VerticalAlignment="Bottom"/>
+                                    <TickBar x:Name="HorizontalInlineTickBar" Grid.ColumnSpan="3" Fill="{ThemeResource SliderInlineTickBarFill}" Height="{ThemeResource SliderTrackThemeHeight}" Grid.Row="1" Visibility="Collapsed"/>
+                                    <TickBar x:Name="BottomTickBar" Grid.ColumnSpan="3" Fill="{ThemeResource SliderTickBarFill}" Height="{ThemeResource SliderOutsideTickBarThemeHeight}" Margin="0,4,0,0" Grid.Row="2" Visibility="Collapsed" VerticalAlignment="Top"/>
+                                    <Thumb x:Name="HorizontalThumb" AutomationProperties.AccessibilityView="Raw" Grid.Column="1" DataContext="{TemplateBinding Value}" FocusVisualMargin="-14,-6,-14,-6" Height="20" Background="{TemplateBinding Foreground}" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource SliderThumbStyle}" Width="20"/>
+                                </Grid>
+                                <Grid x:Name="VerticalTemplate" MinWidth="44" Visibility="Collapsed">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="18"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="18"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Rectangle x:Name="VerticalTrackRect" Grid.Column="1" Fill="{TemplateBinding Background}" Grid.RowSpan="3" Width="{ThemeResource SliderTrackThemeHeight}"/>
+                                    <Rectangle x:Name="VerticalDecreaseRect" Grid.Column="1" Fill="{TemplateBinding Foreground}" Grid.Row="2"/>
+                                    <TickBar x:Name="LeftTickBar" Fill="{ThemeResource SliderTickBarFill}" HorizontalAlignment="Right" Margin="0,0,4,0" Grid.RowSpan="3" Visibility="Collapsed" Width="{ThemeResource SliderOutsideTickBarThemeHeight}"/>
+                                    <TickBar x:Name="VerticalInlineTickBar" Grid.Column="1" Fill="{ThemeResource SliderInlineTickBarFill}" Grid.RowSpan="3" Visibility="Collapsed" Width="{ThemeResource SliderTrackThemeHeight}"/>
+                                    <TickBar x:Name="RightTickBar" Grid.Column="2" Fill="{ThemeResource SliderTickBarFill}" HorizontalAlignment="Left" Margin="4,0,0,0" Grid.RowSpan="3" Visibility="Collapsed" Width="{ThemeResource SliderOutsideTickBarThemeHeight}"/>
+                                    <Thumb x:Name="VerticalThumb" AutomationProperties.AccessibilityView="Raw" Grid.ColumnSpan="3" Grid.Column="0" DataContext="{TemplateBinding Value}" FocusVisualMargin="-6,-14,-6,-14" Height="8" Grid.Row="1" Style="{StaticResource SliderThumbStyle}" Width="24"/>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Storyboard x:Key="showPlaylistAnimation">
+            <DoubleAnimation To="1" Duration="0:0:0.4" EnableDependentAnimation="False" Storyboard.TargetName="playlistContainerScale" Storyboard.TargetProperty="ScaleX">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.3" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation To="1" Duration="0:0:0.4" EnableDependentAnimation="False" Storyboard.TargetName="playlistContainerScale" Storyboard.TargetProperty="ScaleY">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.3" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation To="1" Duration="0:0:0.2" EnableDependentAnimation="False" Storyboard.TargetName="playlistContainer" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation To="0.5" Duration="0:0:0.2" EnableDependentAnimation="False" Storyboard.TargetName="dismissArea" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="hidePlaylistAnimation">
+            <DoubleAnimation To="0.5" Duration="0:0:0.4" EnableDependentAnimation="False" Storyboard.TargetName="playlistContainerScale" Storyboard.TargetProperty="ScaleX">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.3" EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation To="0.5" Duration="0:0:0.4" EnableDependentAnimation="False" Storyboard.TargetName="playlistContainerScale" Storyboard.TargetProperty="ScaleY">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.3" EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation To="0" BeginTime="0:0:0.2" Duration="0:0:0.2" EnableDependentAnimation="False" Storyboard.TargetName="playlistContainer" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation To="0" BeginTime="0:0:0.2" Duration="0:0:0.2" EnableDependentAnimation="False" Storyboard.TargetName="dismissArea" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="OpenPageTransition">
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="ExitPageTransition">
+            <DoubleAnimation Duration="0:0:0.2" To="0.9" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="0.9" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.1" To="0" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="fadeInBlur">
+            <DoubleAnimation Duration="0:0:0.1" To="1" Storyboard.TargetName="blurBG" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="fadeInBackground">
+            <DoubleAnimation Duration="0:0:0.3" BeginTime="0:0:0.1" To="0.8" Storyboard.TargetName="background" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid>
+        <!--<Grid.RenderTransform>
+            <TranslateTransform x:Name="playerTranslate" />
+        </Grid.RenderTransform>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="fullView" IsHitTestVisible="False" Opacity="0" Loaded="fullView_Loaded" Grid.RowSpan="2" Background="#FF000000">
+
+            <Grid x:Name="background" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Opacity="0" RenderTransformOrigin="0.5,0.5">
+                <Grid.Background>
+                    <ImageBrush Opacity="1" Stretch="UniformToFill">
+                        <ImageBrush.ImageSource>
+                            <BitmapImage x:Name="backgroundBitmapImage" ImageFailed="backgroundBitmapImage_ImageFailed" ImageOpened="backgroundBitmapImage_ImageOpened" />
+                        </ImageBrush.ImageSource>
+                    </ImageBrush>
+                </Grid.Background>
+
+                <!--<Image Stretch="None" Source="ms-appx:///Assets/resumePlayback-icon.png" />-->
+                <!--<Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                        <TranslateTransform x:Name="BackgroundTranslate" X="0" Y="0" />
+                    </TransformGroup>
+                </Grid.RenderTransform>-->
+            </Grid>
+            
+
+            <Grid x:Name="blurBG" Opacity="0" IsHitTestVisible="False" />
+
+            <Grid IsHitTestVisible="False">
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#00000000"/>
+                        <GradientStop Color="#99000000" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+            </Grid>
+
+            <Grid x:Name="modernBG" IsHitTestVisible="False" Opacity="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            <Grid x:Name="materialBG" Visibility="Visible" HorizontalAlignment="Center" IsHitTestVisible="False" Opacity="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Viewbox Stretch="Uniform" Grid.Row="1" MinWidth="1000" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                    <Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="svg849" Width="1000" Height="258">
+                        <Canvas.RenderTransform>
+                            <TranslateTransform X="0" Y="20"/>
+                        </Canvas.RenderTransform>
+                        <Canvas.Resources/>
+                        <Canvas Name="layer1">
+                            <Canvas.RenderTransform>
+                                <TranslateTransform X="0" Y="-39"/>
+                            </Canvas.RenderTransform>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="B2" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -5.0772538 5.8627072 0 -1151.2883 212.15773"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush x:Name="hexagonColorB" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="C1" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -2.7325876 3.1553201 0 -596.0373 135.33515"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush x:Name="hexagonColorC" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="A3" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -2.7325876 3.1553201 0 -515.18638 251.15545"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush x:Name="hexagonColorA" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="A1" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -4.1393874 4.7797526 0 -1148.5796 211.078"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorA, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="A2" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -3.0675401 3.5420896 0 -638.30887 142.21192"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorA, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="C2" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -2.7325876 3.1553201 0 -567.05635 225.22046"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorC, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="B1" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -2.7325876 3.1553201 0 -647.90727 196.87533"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorB, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="C3" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -4.2063777 4.8571064 0 -841.93415 132.71434"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorC, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="B3" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -4.2063977 4.8571295 0 -682.24921 132.71401"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorB, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="A4" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -4.2063777 4.8571064 0 -762.08869 252.48256"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorA, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="B4" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -5.0772536 -5.8627072 0 2151.2884 212.15756"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorB, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="C5" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -2.7325876 -3.1553201 0 1596.0373 135.33497"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorC, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="A5" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -2.7325876 -3.1553201 0 1515.1864 251.15526"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorA, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="A7" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -4.1393874 -4.7797525 0 2148.5796 211.07782"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorA, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="A6" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -3.0675401 -3.5420896 0 1638.3088 142.21175"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorA, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="C4" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -2.7325876 -3.1553201 0 1567.0563 225.22027"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorC, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="B5" StrokeThickness="0.15044056" Opacity="0.4" Data="m 10.642282 276.28259 -18.9820027 -1e-5 -9.4910003 -16.43889 9.4910019 -16.4389 18.9820021 0 9.491 16.4389 z">
+                                <Path.RenderTransform>
+                                    <MatrixTransform Matrix="0 -2.7325876 -3.1553201 0 1647.9072 196.87515"/>
+                                </Path.RenderTransform>
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=hexagonColorB, Path=Color}" />
+                                </Path.Fill>
+                            </Path>
+                        </Canvas>
+                    </Canvas>
+                </Viewbox>
+            </Grid>
+
+            <Grid x:Name="playlistRightBorder" Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ManipulationMode="All" ManipulationDelta="player_ManipulationDelta" ManipulationCompleted="player_ManipulationCompleted" />
+
+            <Grid Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="1" IsTapEnabled="True" Canvas.ZIndex="5" PointerPressed="dismissArea_PointerPressed" IsHitTestVisible="False" x:Name="dismissArea" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button x:Name="optionsButton" Click="optionsButton_Click" RequestedTheme="Dark" Width="55" Style="{StaticResource IconButtonStyle}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" FontFamily="Segoe UI Symbol" FontSize="20" Content="">
+
+                </Button>
+                <Button x:Name="closeButton" Click="closeButton_Click" RequestedTheme="Dark" Width="55" Style="{StaticResource IconButtonStyle}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" FontFamily="Segoe UI Symbol" FontSize="20" Content="" />
+            </StackPanel>
+
+            <Grid RequestedTheme="Dark" x:Name="PlayerControlsContainer" MaxWidth="500">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+
+                </Grid.RowDefinitions>
+                <Grid.RenderTransform>
+                    <TranslateTransform x:Name="PlayerControlsContainerTranslate" />
+                </Grid.RenderTransform>
+                <StackPanel Orientation="Horizontal" x:Name="albumContainer">
+                    <Border x:Name="albumCover" Width="{Binding ElementName=albumCover, Path=Height}" PointerEntered="albumCover_PointerEntered" PointerReleased="albumCover_PointerReleased" Holding="albumCover_Holding" IsDoubleTapEnabled="True" DoubleTapped="albumCover_DoubleTapped" Tapped="albumCover_Tapped" ManipulationMode="All" ManipulationDelta="player_ManipulationDelta" ManipulationCompleted="player_ManipulationCompleted" CornerRadius="10">
+                        <Border.Background>
+                            <ImageBrush>
+                                <ImageBrush.ImageSource>
+                                    <BitmapImage x:Name="fullAlbumBitmap"
+                                         ImageOpened="currentAlbumBitmap_ImageOpened"
+                                                         ImageFailed="currentAlbumBitmap_ImageFailed"/>
+                                </ImageBrush.ImageSource>
+                            </ImageBrush>
+                        </Border.Background>
+                        <TextBlock RenderTransformOrigin="0.5,0.5" x:Name="loveIndicator" Text="" Opacity="0" IsHitTestVisible="False" FontSize="95" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" VerticalAlignment="Center" Foreground="#FF930A0A">
+                            <TextBlock.RenderTransform>
+                                <ScaleTransform x:Name="loveIndicatorScale" ScaleX="0.8" ScaleY="0.8" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                        <Button x:Name="playlistButton" IsEnabled="False" Click="playlistButton_Click" IsTextScaleFactorEnabled="False" Style="{StaticResource IconButtonStyle}" FontSize="18" Content="" Foreground="White" Margin="0,5"/>
+                        <ToggleButton x:Name="repeatToggleButton" IsEnabled="False" IsThreeState="True" IsTextScaleFactorEnabled="False" Click="Repeat_Click" FontFamily="Segoe MDL2 Assets" Content="" Style="{StaticResource IconToggleButtonStyle}" Foreground="White" FontSize="18" Margin="0,5" />
+                        <Button x:Name="shuffleButton" IsEnabled="False" Click="shuffleButton_Click" IsTextScaleFactorEnabled="False" Style="{StaticResource IconButtonStyle}" FontSize="18" Content="" Foreground="White" Margin="0,5" />
+
+                    </StackPanel>
+                </StackPanel>
+
+                <TextBlock x:Name="SongName" IsHitTestVisible="False" FontSize="14" FontWeight="Bold" Text="" TextTrimming="CharacterEllipsis" />
+                <TextBlock x:Name="ArtistName" IsHitTestVisible="False" FontSize="12" Text="" TextTrimming="CharacterEllipsis" />
+                <!--<TextBlock x:Name="AlbumName" IsHitTestVisible="False" Visibility="Collapsed" Text="" TextTrimming="CharacterEllipsis" />-->
+
+                <StackPanel Orientation="Horizontal" x:Name="MusicControlButtonsPanel">
+                    <Button x:Name="previousButton" IsEnabled="False" Margin="10,0" FontFamily="Segoe UI Symbol" Foreground="White" FontSize="25" Click="previousButton_Click" Content="" Style="{StaticResource IconButtonStyle}" />
+                    <Button Content="{Binding ElementName=PlayPauseButton, Path=Tag}" Margin="10,0" Foreground="White" Height="50" Width="50" FontSize="25" Click="playPauseButton_Click" Style="{StaticResource CircleButtonStyle}">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="-45"/>
+                                </LinearGradientBrush.RelativeTransform>
+                                <GradientStop x:Name="gradientStop1" Color="#FF160089"/>
+                                <GradientStop x:Name="gradientStop2" Color="#FF3180BB" Offset="0.5"/>
+                                <GradientStop x:Name="gradientStop3" Color="#FF160089" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="nextButton" IsEnabled="False" Margin="10,0" FontFamily="Segoe UI Symbol" Foreground="White" FontSize="25" Click="nextButton_Click" Content="" Style="{StaticResource IconButtonStyle}" />
+                </StackPanel>
+
+                <Slider x:Name="musicSlider" IsThumbToolTipEnabled="False" Foreground="White" Style="{StaticResource ProgressSliderStyle}" />
+
+                <TextBlock x:Name="MusicPositionTime" FontSize="11" />
+                <TextBlock x:Name="MusicDurationTime" FontSize="11" />
+
+            </Grid>
+
+            <local:PlaylistControl x:Name="playlist" MaxWidth="500" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Canvas.ZIndex="6">
+                <local:PlaylistControl.RenderTransform>
+                    <TranslateTransform x:Name="playlistTranslate" />
+                </local:PlaylistControl.RenderTransform>
+            </local:PlaylistControl>
+
+            <local:Touch3D x:Name="touch3D" IsHitTestVisible="False" Canvas.ZIndex="15" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+
+            <!--<Rectangle Opacity="0" Fill="Black" Canvas.ZIndex="14" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsHitTestVisible="False" x:Name="touch3DOverlay" PointerReleased="touch3DOverlay_PointerReleased" />-->
+        </Grid>
+
+        <Grid x:Name="compactView" Loaded="compactView_Loaded" Grid.Row="1" VerticalAlignment="Bottom" RequestedTheme="Default" Canvas.ZIndex="3" Height="60">
+
+            
+
+            <ProgressBar Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="60,0,0,0" Height="4" Background="Transparent" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Name="MusicProgress" Opacity="0.3" Padding="0" />
+            <Grid x:Name="compactViewContent" Height="60" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--<Grid Grid.ColumnSpan="2" Opacity="0.1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />-->
+                <Grid Canvas.ZIndex="2" Height="5" Opacity="0.5" Margin="0,-5,0,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Column="0" Grid.ColumnSpan="2" >
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#00000000"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                </Grid>
+
+                <Grid Grid.Row="0" Background="Transparent" RenderTransformOrigin="0.5,0.5" Name="PlayerBottomBarInfo" Tapped="OpenPlayer_Tapped">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" CornerRadius="0,0,5,0" Margin="0,0,5,0" Width="60" Height="60" Background="#FF333333" Name="SmallCoverContainer">
+                            <TextBlock Text="" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35" FontFamily="Segoe MDL2 Assets" Foreground="#FF666666" />
+                            <Image Stretch="UniformToFill">
+                                <Image.Source>
+                                    <BitmapImage x:Name="compactAlbumBitmap" ImageFailed="currentAlbumBitmap_ImageFailed" />
+                                </Image.Source>
+                            </Image>
+                        </Grid>
+                        <Grid Margin="0,5,-10,10" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding ElementName=SongName, Path=Text}" Grid.Row="0" TextTrimming="CharacterEllipsis" FontSize="15" FontWeight="Medium" IsTextScaleFactorEnabled="False" />
+                            <TextBlock Text="{Binding ElementName=ArtistName, Path=Text}" Grid.Row="1" TextTrimming="CharacterEllipsis" VerticalAlignment="Bottom" Margin="0,5,0,0" FontSize="14" FontWeight="Thin" IsTextScaleFactorEnabled="False" Opacity="0.7" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <StackPanel Margin="0,0,0,0" Grid.Column="1" Orientation="Horizontal" Visibility="Visible" HorizontalAlignment="Right" Name="CompactControlButtons">
+                    <Button IsEnabled="{Binding ElementName=previousButton, Path=IsEnabled}" Style="{StaticResource PlayerBarControlsButtonStyle}" PointerEntered="previousButton_PointerEntered" Holding="previousButton_Holding" PointerPressed="previousButton_PointerEntered" PointerCaptureLost="previousButton_PointerExited" PointerExited="previousButton_PointerExited" PointerReleased="previousButton_PointerExited" FontSize="24" Background="Transparent" Click="previousButton_Click" Tag="" Padding="0" VerticalAlignment="Stretch" Margin="20,0,0,0" />
+                    <Button Style="{StaticResource PlayerBarControlsButtonStyle}" FontSize="24" Background="Transparent" Click="playPauseButton_Click" Name="PlayPauseButton" Tag="" Padding="0" VerticalAlignment="Stretch" Margin="0,0,0,0" />
+                    <Button IsEnabled="{Binding ElementName=nextButton, Path=IsEnabled}" Style="{StaticResource PlayerBarControlsButtonStyle}" PointerEntered="nextButton_PointerEntered" Holding="nextButton_Holding" PointerPressed="nextButton_PointerEntered" PointerCaptureLost="nextButton_PointerExited" PointerExited="nextButton_PointerExited" PointerReleased="nextButton_PointerExited" FontSize="24" Background="Transparent" Click="nextButton_Click" Tag="" Padding="0" VerticalAlignment="Stretch" Margin="0,0,0,0" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <!-- DEFAULT STATE -->
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="0" MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="albumCover.Height" Value="150" />
+                        <Setter Target="albumCover.Width" Value="150" />
+                        <Setter Target="albumContainer.HorizontalAlignment" Value="Left" />
+                        <Setter Target="albumContainer.Margin" Value="20,5" />
+                        <Setter Target="albumContainer.(Grid.Row)" Value="1" />
+                        <Setter Target="SongName.TextAlignment" Value="Left" />
+                        <Setter Target="SongName.(Grid.Row)" Value="2" />
+                        <Setter Target="SongName.FontSize" Value="20" />
+                        <Setter Target="SongName.Margin" Value="20,0,20,5" />
+                        <Setter Target="ArtistName.TextAlignment" Value="Left" />
+                        <Setter Target="ArtistName.(Grid.Row)" Value="3" />
+                        <Setter Target="ArtistName.FontSize" Value="15" />
+                        <Setter Target="ArtistName.Margin" Value="20,0,20,5" />
+                        <Setter Target="musicSlider.(Grid.Row)" Value="5" />
+                        <Setter Target="musicSlider.Margin" Value="20,0" />
+                        <Setter Target="MusicControlButtonsPanel.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicControlButtonsPanel.HorizontalAlignment" Value="Center" />
+                        <Setter Target="MusicControlButtonsPanel.Margin" Value="10,0,0,10" />
+                        <Setter Target="MusicPositionTime.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicPositionTime.HorizontalAlignment" Value="Left" />
+                        <Setter Target="MusicPositionTime.Margin" Value="20,0" />
+                        <Setter Target="MusicDurationTime.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicDurationTime.HorizontalAlignment" Value="Right" />
+                        <Setter Target="MusicDurationTime.Margin" Value="20,0" />
+
+                    </VisualState.Setters>
+                </VisualState>
+
+                <!-- SMALL PHONE -->
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="400" MinWindowWidth="250" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="albumCover.Height" Value="150" />
+                        <Setter Target="albumContainer.HorizontalAlignment" Value="Center" />
+                        <Setter Target="albumContainer.Margin" Value="38,5,0,5" />
+                        <Setter Target="albumContainer.(Grid.Row)" Value="1" />
+                        <Setter Target="SongName.TextAlignment" Value="Center" />
+                        <Setter Target="SongName.(Grid.Row)" Value="2" />
+                        <Setter Target="SongName.FontSize" Value="20" />
+                        <Setter Target="SongName.Margin" Value="20,0,20,5" />
+                        <Setter Target="ArtistName.TextAlignment" Value="Center" />
+                        <Setter Target="ArtistName.(Grid.Row)" Value="3" />
+                        <Setter Target="ArtistName.FontSize" Value="15" />
+                        <Setter Target="ArtistName.Margin" Value="20,0,20,5" />
+                        <Setter Target="musicSlider.(Grid.Row)" Value="5" />
+                        <Setter Target="musicSlider.Margin" Value="20,0" />
+                        <Setter Target="MusicControlButtonsPanel.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicControlButtonsPanel.HorizontalAlignment" Value="Center" />
+                        <Setter Target="MusicControlButtonsPanel.Margin" Value="10,0,0,10" />
+                        <Setter Target="MusicPositionTime.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicPositionTime.HorizontalAlignment" Value="Left" />
+                        <Setter Target="MusicPositionTime.Margin" Value="20,0" />
+                        <Setter Target="MusicDurationTime.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicDurationTime.HorizontalAlignment" Value="Right" />
+                        <Setter Target="MusicDurationTime.Margin" Value="20,0" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <!-- 5" INCHES PHONE -->
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="600" MinWindowWidth="300" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="albumCover.Height" Value="200" />
+                        <Setter Target="albumContainer.HorizontalAlignment" Value="Center" />
+                        <Setter Target="albumContainer.Margin" Value="38,5,0,5" />
+                        <Setter Target="albumContainer.(Grid.Row)" Value="1" />
+                        <Setter Target="SongName.TextAlignment" Value="Center" />
+                        <Setter Target="SongName.(Grid.Row)" Value="2" />
+                        <Setter Target="SongName.FontSize" Value="20" />
+                        <Setter Target="SongName.Margin" Value="20,0,20,5" />
+                        <Setter Target="ArtistName.TextAlignment" Value="Center" />
+                        <Setter Target="ArtistName.(Grid.Row)" Value="3" />
+                        <Setter Target="ArtistName.FontSize" Value="15" />
+                        <Setter Target="ArtistName.Margin" Value="20,0,20,5" />
+                        <Setter Target="musicSlider.(Grid.Row)" Value="5" />
+                        <Setter Target="musicSlider.Margin" Value="20,0" />
+                        <Setter Target="MusicControlButtonsPanel.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicControlButtonsPanel.HorizontalAlignment" Value="Center" />
+                        <Setter Target="MusicControlButtonsPanel.Margin" Value="10,0,0,10" />
+                        <Setter Target="MusicPositionTime.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicPositionTime.HorizontalAlignment" Value="Left" />
+                        <Setter Target="MusicPositionTime.Margin" Value="20,0" />
+                        <Setter Target="MusicDurationTime.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicDurationTime.HorizontalAlignment" Value="Right" />
+                        <Setter Target="MusicDurationTime.Margin" Value="20,0" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <!-- PHABLET VERTICAL -->
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="700" MinWindowWidth="500" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="albumCover.Height" Value="225" />
+                        <Setter Target="albumContainer.HorizontalAlignment" Value="Center" />
+                        <Setter Target="albumContainer.Margin" Value="38,5,0,5" />
+                        <Setter Target="albumContainer.(Grid.Row)" Value="1" />
+                        <Setter Target="SongName.TextAlignment" Value="Center" />
+                        <Setter Target="SongName.(Grid.Row)" Value="2" />
+                        <Setter Target="SongName.FontSize" Value="20" />
+                        <Setter Target="SongName.Margin" Value="20,0,20,5" />
+                        <Setter Target="ArtistName.TextAlignment" Value="Center" />
+                        <Setter Target="ArtistName.(Grid.Row)" Value="3" />
+                        <Setter Target="ArtistName.FontSize" Value="17" />
+                        <Setter Target="ArtistName.Margin" Value="20,0,20,5" />
+                        <Setter Target="musicSlider.(Grid.Row)" Value="5" />
+                        <Setter Target="musicSlider.Margin" Value="20,0" />
+                        <Setter Target="MusicControlButtonsPanel.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicControlButtonsPanel.HorizontalAlignment" Value="Center" />
+                        <Setter Target="MusicControlButtonsPanel.Margin" Value="10,0,0,10" />
+                        <Setter Target="MusicPositionTime.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicPositionTime.HorizontalAlignment" Value="Left" />
+                        <Setter Target="MusicPositionTime.Margin" Value="20,0" />
+                        <Setter Target="MusicDurationTime.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicDurationTime.HorizontalAlignment" Value="Right" />
+                        <Setter Target="MusicDurationTime.Margin" Value="20,0" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <!-- PHABLET HORIZONTAL -->
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="500" MinWindowWidth="800" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="albumCover.Height" Value="265" />
+                        <Setter Target="albumContainer.HorizontalAlignment" Value="Center" />
+                        <Setter Target="albumContainer.Margin" Value="38,5,0,5" />
+                        <Setter Target="albumContainer.(Grid.Row)" Value="1" />
+                        <Setter Target="SongName.TextAlignment" Value="Center" />
+                        <Setter Target="SongName.(Grid.Row)" Value="2" />
+                        <Setter Target="SongName.FontSize" Value="25" />
+                        <Setter Target="SongName.Margin" Value="20,0,20,5" />
+                        <Setter Target="ArtistName.TextAlignment" Value="Center" />
+                        <Setter Target="ArtistName.(Grid.Row)" Value="3" />
+                        <Setter Target="ArtistName.FontSize" Value="19" />
+                        <Setter Target="ArtistName.Margin" Value="20,0,20,5" />
+                        <Setter Target="musicSlider.(Grid.Row)" Value="5" />
+                        <Setter Target="musicSlider.Margin" Value="20,0" />
+                        <Setter Target="MusicControlButtonsPanel.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicControlButtonsPanel.HorizontalAlignment" Value="Center" />
+                        <Setter Target="MusicControlButtonsPanel.Margin" Value="10,0,0,10" />
+                        <Setter Target="MusicPositionTime.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicPositionTime.HorizontalAlignment" Value="Left" />
+                        <Setter Target="MusicPositionTime.Margin" Value="20,0" />
+                        <Setter Target="MusicDurationTime.(Grid.Row)" Value="6" />
+                        <Setter Target="MusicDurationTime.HorizontalAlignment" Value="Right" />
+                        <Setter Target="MusicDurationTime.Margin" Value="20,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+
+    </Grid>
+</UserControl>

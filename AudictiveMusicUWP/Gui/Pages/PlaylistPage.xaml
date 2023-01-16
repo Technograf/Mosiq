@@ -1,0 +1,99 @@
+﻿<Page
+    x:Class="AudictiveMusicUWP.Gui.Pages.PlaylistPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Storyboard x:Key="OpenPageTransition">
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
+    
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <SuppressNavigationTransitionInfo />
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid>
+        <ProgressRing x:Name="progress" IsActive="true" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" Height="50" />
+        <Grid x:Name="layoutRoot" RenderTransformOrigin="0.5, 0.5" Opacity="0">
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleX="0.9" ScaleY="0.9" x:Name="layoutRootScale" />
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <!--<TextBlock Text="" FontSize="200" Opacity="0.05" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.RowSpan="3" />-->
+            <Grid Grid.ColumnSpan="2">
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.5" Color="{ThemeResource SystemChromeLowColor}" />
+                </Grid.Background>
+            </Grid>
+            <Grid Grid.Row="0" x:Name="pageTitleGrid">
+                <TextBlock x:Name="pageTitle" VerticalAlignment="Center" Margin="12,0" FontWeight="Bold" FontSize="25" TextTrimming="CharacterEllipsis" />
+            </Grid>
+            <StackPanel x:Name="actionButtons" Grid.Column="1" Orientation="Horizontal">
+                <Button x:Name="removeButton" Style="{StaticResource IconButtonStyle}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" FontFamily="Segoe UI Symbol" IsEnabled="False" Click="removeButton_Click" Content="" VerticalAlignment="Stretch" />
+                <Button x:Name="renameButton" Style="{StaticResource IconButtonStyle}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" FontFamily="Segoe UI Symbol" Click="renameButton_Click" Content="" VerticalAlignment="Stretch" />
+                <Button x:Name="saveButton" Style="{StaticResource IconButtonStyle}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" FontFamily="Segoe UI Symbol" Click="saveButton_Click" Content="" VerticalAlignment="Stretch" />
+                <Button x:Name="moreButton" Style="{StaticResource IconButtonStyle}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" FontFamily="Segoe UI Symbol" Click="moreButton_Click" Content="" VerticalAlignment="Stretch" />
+            </StackPanel>
+
+            <ListView Grid.Row="1" Grid.ColumnSpan="2" Padding="0,0,0,55" x:Name="SongsList" SelectionChanged="SongsList_SelectionChanged" CanReorderItems="True" AllowDrop="True" CanDragItems="True" SelectionMode="Multiple" IsMultiSelectCheckBoxEnabled="True" HorizontalContentAlignment="Stretch">
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <RepositionThemeTransition />
+                        <AddDeleteThemeTransition />
+                        <ReorderThemeTransition />
+                        <EntranceThemeTransition FromVerticalOffset="50" IsStaggeringEnabled="True" />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch" Margin="0,5" Background="Transparent" IsHoldingEnabled="True" IsRightTapEnabled="True" RightTapped="SongItem_RightTapped" Holding="SongItem_Holding">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock HorizontalAlignment="Left" Margin="0,5,0,0" Grid.Row="0" Text="{Binding Title}" FontSize="14" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                            <StackPanel Margin="0,5,0,5" Orientation="Horizontal" Grid.Row="1">
+                                <TextBlock Text="{Binding Artist}" FontSize="10" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                                <TextBlock Text="" Margin="5,0,5,0" FontSize="6" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" />
+                                <TextBlock Text="{Binding Album}" FontSize="10" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>

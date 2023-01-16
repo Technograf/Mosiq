@@ -1,0 +1,99 @@
+﻿<UserControl
+    x:Class="AudictiveMusicUWP.Gui.UC.ActionableNotification"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudictiveMusicUWP.Gui.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="root">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="ButtonWrap">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" />
+        </DataTemplate>
+
+        <Storyboard x:Key="showAnimation">
+            <DoubleAnimation Storyboard.TargetName="translate" Storyboard.TargetProperty="Y" To="0" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.15">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="hideAnimation" Completed="hideAnimation_Completed">
+            <DoubleAnimation Storyboard.TargetName="translate" Storyboard.TargetProperty="Y" To="-100" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.15">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Canvas.ZIndex="2" RequestedTheme="Dark" VerticalAlignment="Stretch" Grid.Row="0">
+            <Grid.RenderTransform>
+                <TranslateTransform x:Name="translate" Y="-100" />
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="70" />
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <SolidColorBrush Color="{ThemeResource SystemChromeLowColor}"/>
+            </Grid.Background>
+            <Grid Grid.RowSpan="5" Grid.ColumnSpan="4" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Opacity="0.6" />
+
+            <Button Grid.Column="4" HorizontalAlignment="Right" x:Name="closeButton" Click="closeButton_Click" Padding="-10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="20" Height="20" FontSize="20" IsTextScaleFactorEnabled="False" Content="" FontFamily="Segoe MDL2 Assets">
+
+            </Button>
+            <TextBlock Grid.Row="1" Grid.RowSpan="2" Text="{Binding Icon, ElementName=root}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" x:Name="icon" FontSize="30" Margin="20,0,20,0" IsTextScaleFactorEnabled="False" />
+            <TextBlock x:Name="title" Text="{Binding Title, ElementName=root}" Margin="0,0,10,0" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom" FontWeight="Medium" TextWrapping="Wrap" FontSize="16" />
+            <TextBlock x:Name="subtitle" Text="{Binding Subtitle, ElementName=root}" Margin="0,0,10,0" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Top" TextWrapping="Wrap" />
+            <Grid x:Name="customContentArea" Visibility="Collapsed" HorizontalAlignment="Stretch" Grid.Row="3" Grid.ColumnSpan="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Grid x:Name="defaultButtonsArea" Visibility="Collapsed" HorizontalAlignment="Stretch" Grid.Row="3" Grid.ColumnSpan="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="action1" Click="action1_Click" Padding="10" Visibility="{Binding PrimaryActionVisibility, ElementName=root}" IsEnabled="{Binding IsPrimaryActionEnabled, ElementName=root}" ContentTemplate="{StaticResource ButtonWrap}" HorizontalContentAlignment="Center" Grid.Column="0" Margin="10,10,10,0" Content="{Binding PrimaryActionContent, ElementName=root}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                <Button x:Name="action2" Click="action2_Click" Padding="10" Visibility="{Binding SecondaryActionVisibility, ElementName=root}" IsEnabled="{Binding IsSecondaryActionEnabled, ElementName=root}" ContentTemplate="{StaticResource ButtonWrap}" Grid.Column="1" Margin="10,10,10,0" Content="{Binding SecondaryActionContent, ElementName=root}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            </Grid>
+            <Grid x:Name="dragArea" Grid.Row="4" Grid.ColumnSpan="4">
+
+            </Grid>
+        </Grid>
+        <Rectangle PointerPressed="Rectangle_PointerPressed" Grid.Row="0" Grid.RowSpan="2" Opacity="0.8" Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+    </Grid>
+</UserControl>

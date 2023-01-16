@@ -1,0 +1,67 @@
+﻿<UserControl
+    x:Class="AudictiveMusicUWP.Gui.UC.MusicLibraryPicker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudictiveMusicUWP.Gui.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <Grid x:Name="blur" Background="Transparent" Opacity="1" PointerPressed="blur_PointerPressed" />
+        <Grid x:Name="pickerUI" MaxHeight="600" MaxWidth="400" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="15" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="#33999999" BorderThickness="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Uid="ManageLibrary" Grid.Row="0" Text="Gerencie sua biblioteca de músicas:" Margin="10" />
+            <TextBlock Grid.Row="1" Grid.ColumnSpan="2" x:Uid="ManageLibraryCaption" Text="Adicione ou remova pastas de sua biblioteca de músicas" TextWrapping="WrapWholeWords" Margin="12,0,12,12" FontSize="12" Opacity="0.7" />
+
+            <TextBlock x:Uid="ManageLibraryNothingToDisplay" x:Name="ChooseFoldersNothingToDisplay" Visibility="Collapsed" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Grid.Row="2" Text="Não há nada para exibir" Margin="10" />
+
+            <ListView SelectionMode="Single" x:Name="foldersList" Grid.Row="2" SelectionChanged="foldersList_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch" Margin="0,5" Background="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock HorizontalAlignment="Left" Margin="0,5,0,0" Grid.Row="0" Text="{Binding DisplayName}" FontSize="14" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                            <TextBlock Text="{Binding Path}" Grid.Row="1" Margin="0,5" FontSize="10" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" />
+                            <Button Style="{StaticResource IconButtonStyle}" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" Margin="5" Content="" Click="removeButton_Click" MinWidth="40" />
+                        </Grid>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Grid Grid.Row="3" MinHeight="48" Background="#33999999">
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource SideMenuButtonStyle}" x:Name="addButton" Click="addButton_Click" Width="55" HorizontalAlignment="Left" VerticalAlignment="Stretch" Tag="" />
+
+                <!--<StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource SideMenuButtonStyle}" x:Name="removeButton" Click="removeButton_Click" Width="55" HorizontalAlignment="Right" VerticalAlignment="Stretch" Tag="" />
+                    <Button Style="{StaticResource SideMenuButtonStyle}" x:Name="addButton" Click="addButton_Click" Width="55" HorizontalAlignment="Right" VerticalAlignment="Stretch" Tag="" />
+                </StackPanel>-->
+                <Button Grid.Column="1" Style="{StaticResource SideMenuButtonStyle}" x:Uid="Done" x:Name="doneButton" Click="doneButton_Click" VerticalAlignment="Stretch" Tag="" Content="Concluir" />
+
+            </Grid>
+
+        </Grid>
+    </Grid>
+</UserControl>

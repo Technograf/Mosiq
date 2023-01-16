@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+  <Identity Name="4Direction.CloudPlayer" Publisher="CN=wikiz" Version="1.2020.1.0" />
+  <mp:PhoneIdentity PhoneProductId="afcc560d-ac65-4d33-a4f3-ccb033ad792e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>Mosiq Player</DisplayName>
+    <PublisherDisplayName>4Direction</PublisherDisplayName>
+    <Logo>Assets\Logos\StoreLogo.png</Logo>
+  </Properties>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="AudictiveMusicUWP.App">
+      <uap:VisualElements DisplayName="Mosic Player" Square150x150Logo="Assets\Logos\Square150.png" Square44x44Logo="Assets\Logos\Square44.png" Description="Mosiq is a cloud player" BackgroundColor="#3a75c4">
+        <uap:DefaultTile Wide310x150Logo="Assets\Logos\Wide310.png" Square310x310Logo="Assets\Logos\Square310.png" Square71x71Logo="Assets\Logos\Square71.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo"/>
+            <uap:ShowOn Tile="wide310x150Logo"/>
+            <uap:ShowOn Tile="square310x310Logo"/>
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\Logos\SplashScreen.png" BackgroundColor="#3a75c4" />
+        <uap:LockScreen Notification="badge" BadgeLogo="Assets\Logos\Square44.png"/>
+      </uap:VisualElements>
+      <Extensions>
+        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundAudioAgent.MosiqMediaPlayerAgent">
+          <BackgroundTasks>
+            <Task Type="audio" />
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <uap:Capability Name="musicLibrary" />
+    <DeviceCapability Name="bluetooth"/>
+  </Capabilities>
+</Package>

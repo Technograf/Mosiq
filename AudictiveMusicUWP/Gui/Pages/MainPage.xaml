@@ -1,0 +1,204 @@
+﻿<Page
+    x:Class="AudictiveMusicUWP.Gui.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudictiveMusicUWP.Gui.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <SuppressNavigationTransitionInfo />
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!--<RowDefinition Height="48" />-->
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="titleBar" Grid.ColumnSpan="2" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Canvas.ZIndex="2000" Loaded="titleBar_Loaded">
+            <Grid x:Name="titleBarDragArea">
+                <Grid.Background>
+                    <SolidColorBrush x:Name="titleBarBackgroundBrush" Color="#FFDC572E" Opacity="0.8" />
+                </Grid.Background>
+                <Grid x:Name="titleBarAcrillic" Background="Transparent" IsHitTestVisible="False" Opacity="0.5" />
+            </Grid>
+            <!--<Grid Background="{ThemeResource SystemControlBackgroundAccentRevealBorderBrush}" IsHitTestVisible="False" Opacity="0.4" />-->
+            <Grid Canvas.ZIndex="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition x:Name="rightColumn" Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid RequestedTheme="Dark">
+                    <Grid.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.2" />
+                    </Grid.Background>
+                    <Image x:Name="titleBarLogo" Visibility="Collapsed" Source="ms-appx:///Assets/Logos/Square44.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="20" DoubleTapped="titleBarLogo_DoubleTapped" />
+                    <Button VerticalAlignment="Stretch" Style="{StaticResource IconButtonStyle}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" FontSize="12" Width="65" x:Name="BackButton" Visibility="Visible" Click="BackButton_Click" />
+                </Grid>
+                <TextBlock x:Name="titleBarTitle" Text="MOSIQ PLAYER" TextTrimming="CharacterEllipsis" FontWeight="SemiBold" IsHitTestVisible="False" Grid.Column="1" FontSize="13" Margin="10,0" VerticalAlignment="Center" />
+                <!--<Button VerticalAlignment="Stretch" IsTabStop="False" Grid.Column="2" Style="{StaticResource SideMenuButtonStyle}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Width="55" Tag="" x:Name="FullScreenButton" Click="FullScreenButton_Click" />-->
+            </Grid>
+        </Grid>
+
+        <!--<SplitView Canvas.ZIndex="10" Name="menu" Grid.Row="1" Grid.RowSpan="2" OpenPaneLength="275" CompactPaneLength="55" DisplayMode="Overlay">
+            <SplitView.PaneBackground>
+                <SolidColorBrush Opacity="1" Color="{ThemeResource SystemChromeLowColor}"/>
+            </SplitView.PaneBackground>
+            <SplitView.Pane>
+                <Grid>
+                    <Grid>
+                        <Grid.Background>
+                            <SolidColorBrush x:Name="MenuBackgroundColor" Opacity="0.9" Color="Transparent"/>
+                        </Grid.Background>
+                    </Grid>
+                    <Grid x:Name="acrillic" Visibility="Collapsed" Grid.RowSpan="3" Opacity="0.2" />
+                    <Rectangle HorizontalAlignment="Right" Margin="0,0,0,0" Opacity="1" VerticalAlignment="Stretch" Width="2">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{Binding Color, ElementName=MenuBackgroundColor}" />
+                        </Rectangle.Fill>
+
+                    </Rectangle>
+                    <Grid x:Name="menuButtonsGrid">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Button Tag="" MinHeight="48" Click="SideMenuButton_Click" FontWeight="Bold" Style="{StaticResource SideMenuButtonStyle}" />
+                        <ScrollViewer Grid.Row="1" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Hidden" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled">
+                            <StackPanel x:Name="buttonsContainer">
+                                <Button Grid.Column="0" x:Uid="SearchMenu" MinHeight="48" Tag="" x:Name="searchButton" Click="searchButton_Click" Content="Search" Style="{StaticResource SideMenuButtonStyle}" />
+                                <ToggleButton x:Name="startButton" x:Uid="StartMenu" Tag="" Click="StartMenuButton_Click" Content="Start" Style="{StaticResource SideMenuToggleButtonStyle}" />
+
+                                <ToggleButton x:Name="collectionButton" x:Uid="CollectionMenu" Tag="" Click="CollectionMenuButton_Click" Content="Collection" Style="{StaticResource SideMenuToggleButtonStyle}" />
+
+                                --><!--<ToggleButton x:Name="artistsButton" x:Uid="ArtistsMenu" Tag="" Click="ArtistsMenuButton_Click" Content="Artists" Style="{StaticResource SideMenuToggleButtonStyle}" />
+                                <ToggleButton x:Name="albumsButton" x:Uid="AlbumsMenu" Tag="" Click="AlbumsMenuButton_Click" Content="Albums" Style="{StaticResource SideMenuToggleButtonStyle}" />
+                                <ToggleButton x:Name="songsButton" x:Uid="SongsMenu" Tag="" Click="SongsMenuButton_Click" Content="Songs" Style="{StaticResource SideMenuToggleButtonStyle}" />--><!--
+                                <ToggleButton x:Name="playlistsButton" AllowDrop="True" DragOver="playlistsButton_DragOver" Drop="playlistsButton_Drop" x:Uid="PlaylistsMenu" Tag="" Click="PlaylistsMenuButton_Click" Content="Playlists" Style="{StaticResource SideMenuToggleButtonStyle}" />
+                                --><!--<ToggleButton x:Name="historyButton" x:Uid="RecentPlaysMenu" Tag="" Content="History" Style="{StaticResource SideMenuToggleButtonStyle}" />-->
+                                <!--<ToggleButton x:Name="nowPlayingButton" AllowDrop="True" DragOver="nowPlaying_DragOver" Drop="nowPlaying_Drop" x:Uid="NowPlayingMenu" Tag="" Content="Now playing" Click="NowPlayingButton_Click" Style="{StaticResource SideMenuToggleButtonStyle}" />-->
+                                <!--<ToggleButton x:Name="favoritesButton" x:Uid="FavoritesMenu" Tag="" Content="Meus favoritos" Click="favoritesButton_Click" Style="{StaticResource SideMenuToggleButtonStyle}" />--><!--
+
+
+                            </StackPanel>
+                        </ScrollViewer>
+                        <Button Grid.Row="2" x:Uid="ContactSupportMenu" MinHeight="48" Tag="" x:Name="contactSupportButton" Click="contactSupportButton_Click" Content="Contact support" Style="{StaticResource SideMenuButtonStyle}" />
+                        <ToggleButton x:Name="settingsButton" x:Uid="SettingsMenu" Tag="" Grid.Row="3" Content="Settings" Click="SettingsButton_Click" Style="{StaticResource SideMenuToggleButtonStyle}" />
+                    </Grid>
+                </Grid>
+            </SplitView.Pane>
+        </SplitView>-->
+
+        <!--<Grid Grid.RowSpan="2" Grid.Row="1" Canvas.ZIndex="11" Background="Transparent" HorizontalAlignment="Left" Width="10" PointerPressed="showMenu_PointerPressed" ManipulationMode="TranslateX" ManipulationCompleted="showMenu_ManipulationCompleted" />-->
+
+        <!--<Grid x:Name="menuButtonForSmallScreenContainer" RequestedTheme="{Binding ElementName=menu, Path=RequestedTheme}" Grid.Row="1" Canvas.ZIndex="3" MinHeight="48" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Margin="-1,0,0,0">
+            <Grid.Background>
+                <SolidColorBrush Opacity="1" Color="{ThemeResource SystemChromeLowColor}"/>
+            </Grid.Background>
+            <Grid>
+                <Grid.Background>
+                    <SolidColorBrush Color="{Binding ElementName=MenuBackgroundColor, Path=Color}" />
+                </Grid.Background>
+            </Grid>
+            <Button x:Name="menuButtonForSmallScreen" Width="55" BorderThickness="0" VerticalAlignment="Center" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" HorizontalAlignment="Stretch" MinHeight="48" Tag="" Click="SideMenuButton_Click" FontWeight="Bold" Style="{StaticResource SideMenuButtonStyle}">
+
+            </Button>
+        </Grid>-->
+
+        <Grid x:Name="acrillicPageBG" Grid.ColumnSpan="2" Visibility="Collapsed" Canvas.ZIndex="1" Opacity="0.2" Grid.Row="0" Grid.RowSpan="2" />
+        <Frame x:Name="MainFrame" Grid.Column="1" Canvas.ZIndex="2" Navigated="MainFrame_Navigated" Grid.Row="1" Grid.RowSpan="2" />
+        <Grid Grid.Column="1" RequestedTheme="{Binding ElementName=bottomNavBar, Path=RequestedTheme}" Height="{Binding ElementName=footerBlur, Path=Height}" Grid.Row="1" VerticalAlignment="Bottom" Canvas.ZIndex="-99">
+            <Grid.Background>
+                <SolidColorBrush Color="{ThemeResource SystemChromeLowColor}" />
+            </Grid.Background>
+        </Grid>
+        <local:NavigationBar Grid.Column="0" x:Name="leftNavBar" Tint="#FFDC572E" IsBlurEnabled="True" Canvas.ZIndex="3" Visibility="Collapsed" Orientation="Vertical" ActionRequested="bottomNavBar_ActionRequested" Background="{ThemeResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Width="65" Grid.Row="1" VerticalAlignment="Stretch" />
+        <Grid x:Name="Footer" Grid.Column="1" SizeChanged="Footer_SizeChanged" Canvas.ZIndex="2" Grid.Row="1">
+            <Grid x:Name="footerBlur" Opacity="1" VerticalAlignment="Bottom" />
+            <Rectangle Height="{Binding ElementName=footerBlur, Path=Height}" VerticalAlignment="Bottom">
+                <Rectangle.Fill>
+                    <SolidColorBrush x:Name="footerBackgroundColor" Color="#FFDC572E" Opacity="0.6" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <local:PlayerControl x:Name="player" ViewChanged="player_ViewChanged" HorizontalAlignment="Stretch" Margin="{Binding ElementName=MainFrame, Path=Margin}" VerticalAlignment="Stretch" />
+            <local:NavigationBar x:Name="bottomNavBar" Visibility="Collapsed" Orientation="Horizontal" Height="50" ActionRequested="bottomNavBar_ActionRequested" VerticalAlignment="Bottom" />
+        </Grid>
+        <!--<Grid x:Name="playerControls" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Default" AllowDrop="True" DragOver="nowPlaying_DragOver" Drop="nowPlaying_Drop" Canvas.ZIndex="3" Height="60" Margin="{Binding ElementName=MainFrame, Path=Margin}" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            --><!--<Grid Grid.ColumnSpan="2" Opacity="0.1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />--><!--
+            <ProgressBar Grid.Column="0" Grid.ColumnSpan="2" Margin="60,0,0,0" Height="60" Background="Transparent" Name="MusicProgress" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.15" Padding="0" />
+            <Grid Canvas.ZIndex="2" Height="5" Opacity="0.5" Margin="0,-5,0,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Column="0" Grid.ColumnSpan="2" >
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#00000000"/>
+                        <GradientStop Color="Black" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+            </Grid>
+            <Grid Grid.Row="0" CanDrag="True" Background="Transparent" DragStarting="PlayerBottomBarInfo_DragStarting" RenderTransformOrigin="0.5,0.5" PointerEntered="PlayerBottomBarInfo_PointerEntered" PointerExited="PlayerBottomBarInfo_PointerExited" PointerPressed="PlayerBottomBarInfo_PointerPressed" PointerReleased="PlayerBottomBarInfo_PointerReleased" Name="PlayerBottomBarInfo" Tapped="OpenPlayer_Tapped">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Margin="0,0,5,0" Width="60" Height="60" Background="#44000000" Name="SmallCoverContainer">
+                        <TextBlock Text="" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35" FontFamily="Segoe MDL2 Assets" Foreground="#FF666666" />
+                        <Image Name="AlbumCover" Stretch="UniformToFill" />
+                    </Grid>
+                    <Grid Margin="0,5,-10,10" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Name="SongName" Grid.Row="0" TextTrimming="CharacterEllipsis" FontSize="15" FontWeight="Medium" IsTextScaleFactorEnabled="False" />
+                        <TextBlock Name="ArtistName" Grid.Row="1" TextTrimming="CharacterEllipsis" VerticalAlignment="Bottom" Margin="0,5,0,0" FontSize="14" FontWeight="Thin" IsTextScaleFactorEnabled="False" Opacity="0.7" />
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1" Name="BottomBarTapToResumeMessageGrid" Margin="20,0,20,0" Tapped="BottomBarTapToResumeMessageGrid_Tapped" Visibility="Collapsed">
+                <Button FontWeight="Medium" Content="Tap to resume" x:Uid="TapToResume" Style="{StaticResource InlineButtonStyle}" VerticalAlignment="Center" Grid.Column="1" FontSize="18" IsTextScaleFactorEnabled="False">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding}" FontFamily="Segoe UI" />
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
+            </Grid>
+            <StackPanel Margin="0,0,0,0" Grid.Column="1" Orientation="Horizontal" Visibility="Visible" HorizontalAlignment="Right" Name="BottomBarRightControlButtons">
+                <StackPanel.RenderTransform>
+                    <TranslateTransform X="0" x:Name="BottomBarRightControlButtonsTranslate" />
+                </StackPanel.RenderTransform>
+                <Button Style="{StaticResource PlayerBarControlsButtonStyle}" PointerEntered="previousButton_PointerEntered" PointerPressed="previousButton_PointerEntered" PointerCaptureLost="previousButton_PointerExited" PointerExited="previousButton_PointerExited" PointerReleased="previousButton_PointerExited" FontSize="24" Background="Transparent" Click="Previous_Click" Tag="" Padding="0" VerticalAlignment="Stretch" Margin="20,0,0,0" />
+                <Button Style="{StaticResource PlayerBarControlsButtonStyle}" FontSize="24" Background="Transparent" Click="PlayPause_Click" Name="PlayPauseButton" Tag="" Padding="0" VerticalAlignment="Stretch" Margin="0,0,0,0" />
+                <Button Style="{StaticResource PlayerBarControlsButtonStyle}" PointerEntered="nextButton_PointerEntered" PointerPressed="nextButton_PointerEntered" PointerCaptureLost="nextButton_PointerExited" PointerExited="nextButton_PointerExited" PointerReleased="nextButton_PointerExited" FontSize="24" Background="Transparent" Click="Next_Click" Tag="" Padding="0" VerticalAlignment="Stretch" Margin="0,0,0,0" />
+            </StackPanel>
+        </Grid>-->
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" x:Name="customPopupsArea" Visibility="Collapsed" Canvas.ZIndex="13">
+
+        </Grid>
+
+        <local:ActionableNotification x:Name="notice" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Canvas.ZIndex="14" />
+    </Grid>
+</Page>

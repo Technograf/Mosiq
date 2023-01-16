@@ -1,0 +1,246 @@
+﻿<Page
+    x:Class="AudictiveMusicUWP.Gui.Pages.ArtistPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudictiveMusicUWP.Gui.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="root">
+
+    <Page.Resources>
+        
+
+
+        <Storyboard x:Key="ShowTouchFlyoutAnimation">
+            <DoubleAnimation To="1" Duration="0:0:0.3" EnableDependentAnimation="False" Storyboard.TargetName="touchFlyout" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="HideTouchFlyoutAnimation">
+            <DoubleAnimation To="0" Duration="0:0:0.3" EnableDependentAnimation="False" Storyboard.TargetName="touchFlyout" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+
+        <Storyboard x:Key="OpenPageTransition">
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="BackExitPageTransition">
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="ForwardExitPageTransition">
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+    </Page.Resources>
+
+    <Grid>
+        <ProgressRing x:Name="progress" IsActive="true" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" Height="50" />
+        <Grid x:Name="layoutRoot" RenderTransformOrigin="0.5, 0.5" Opacity="0">
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleX="0.9" ScaleY="0.9" x:Name="layoutRootScale" />
+            </Grid.RenderTransform>
+            <Grid x:Name="pageBackground" Opacity="0">
+                <Grid.Background>
+                    <ImageBrush x:Name="artistBackground" Stretch="UniformToFill">
+                        <ImageBrush.ImageSource>
+                            <BitmapImage x:Name="artistBackgroundBitmap" ImageOpened="artistBackgroundBitmap_ImageOpened" />
+                        </ImageBrush.ImageSource>
+                    </ImageBrush>
+                </Grid.Background>
+            </Grid>
+            <!--<local:ArtistHeader x:Name="header" Holding="artistHeader_Holding" RightTapped="artistHeader_RightTapped" Height="200" Canvas.ZIndex="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" />-->
+            <ScrollViewer x:Name="scroll" ViewChanged="scroll_ViewChanged" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Hidden" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled">
+                <Grid x:Name="scrollContent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--<Grid x:Name="topBlankSpaceForHeader" Grid.Row="0" Height="225" />-->
+                    <local:MediaPageHeader x:Name="header" Canvas.ZIndex="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" />
+
+                    <TextBlock Grid.Row="2" x:Name="albumsHeader" x:Uid="Albums" Margin="12,12,0,12" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Álbuns" />
+                    <ScrollViewer ViewChanged="Sv_ViewChanged" Grid.Row="3" HorizontalScrollMode="Auto" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Left">
+                        <GridView Loaded="albumsList_Loaded" x:Name="albumsList" Padding="10,0,20,0" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollMode="Disabled"
+                          IsItemClickEnabled="True" SelectionMode="None" ItemClick="albumsList_ItemClick">
+                            <GridView.ItemContainerTransitions>
+                                <TransitionCollection>
+                                    <!--<RepositionThemeTransition />
+                                <AddDeleteThemeTransition />
+                                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="250" />-->
+                                </TransitionCollection>
+                            </GridView.ItemContainerTransitions>
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid MaximumRowsOrColumns="1" Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <local:AlbumItem LongHover="AlbumItem_LongHover" MenuTriggered="AlbumItem_MenuTriggered" ItemLength="{Binding AlbumItemLength, ElementName=root, Mode=TwoWay}" />
+
+                                    <!--<Grid Margin="5" Background="Transparent" IsRightTapEnabled="True" RightTapped="Album_RightTapped" IsHoldingEnabled="True" PointerReleased="Grid_PointerReleased" Holding="Album_Holding">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="100" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid Background="Gray" Height="100" Width="100">
+                                            <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF737373" />
+                                            <Image Source="{Binding Image}" ImageOpened="AlbumCover_ImageOpened" Opacity="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                            <Border x:Name="albumItemOverlay" Opacity="0" PointerEntered="albumItemOverlay_PointerEntered"  PointerExited="albumItemOverlay_PointerExited">
+                                                <Border.Background>
+                                                    <SolidColorBrush Color="{Binding Color}" Opacity="1" />
+                                                </Border.Background>
+                                                <Button IsHitTestVisible="False" Style="{StaticResource IconButtonStyle}" Content="" FontSize="30" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" x:Name="playAlbumButton" VerticalAlignment="Center" HorizontalAlignment="Center" Click="playAlbumButton_Click" />
+                                            </Border>
+                                            <RepeatButton Visibility="Visible" Interval="1000" x:Name="repeatButton" ClickMode="Hover" Click="repeatButton_Click" PointerEntered="repeatButton_PointerEntered" PointerReleased="repeatButton_PointerReleased" PointerPressed="repeatButton_PointerPressed" PointerExited="repeatButton_PointerExited" VerticalAlignment="Stretch" Delay="1000" RequiresPointer="WhenEngaged" HorizontalAlignment="Stretch" Opacity="0" />
+                                        </Grid>
+                                        <StackPanel Grid.Row="1" MaxWidth="100">
+                                            <TextBlock Margin="0,5,0,0" Grid.Row="1" Text="{Binding Name}" FontSize="14" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                                            <TextBlock Margin="0,5,0,0" Grid.Row="2" Text="{Binding Artist}" FontSize="10" TextWrapping="NoWrap" TextAlignment="Center" />
+                                        </StackPanel>
+                                    </Grid>-->
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </ScrollViewer>
+                    <TextBlock Grid.Row="4" x:Name="songsHeader" x:Uid="Songs" Margin="12,12,0,12" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Músicas" />
+                    <ListView IsItemClickEnabled="True" ItemClick="songsList_ItemClick" Grid.Row="5" Padding="0,0,0,110" x:Name="songsList" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionMode="None" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition FromHorizontalOffset="-100" FromVerticalOffset="0" IsStaggeringEnabled="True" />
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch" Margin="0,5" Background="Transparent" IsHoldingEnabled="True" RightTapped="SongItem_RightTapped" Holding="SongItem_Holding">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock HorizontalAlignment="Left" Margin="0,5,0,0" Grid.Row="0" Text="{Binding Title}" FontSize="14" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                                    <StackPanel Margin="0,5,0,5" Orientation="Horizontal" Grid.Row="1">
+                                        <TextBlock Text="{Binding Artist}" FontSize="10" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                                        <TextBlock Text="" Margin="5,0,5,0" FontSize="6" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" />
+                                        <TextBlock Text="{Binding Album}" FontSize="10" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+                </Grid>
+            </ScrollViewer>
+
+            <local:PageFlyout x:Name="pageFlyout" Opened="pageFlyout_Opened" Closed="pageFlyout_Closed" Grid.RowSpan="3" Canvas.ZIndex="20" IsHitTestVisible="False" />
+
+            <!--<Grid x:Name="touchFlyout" Opacity="0" IsHitTestVisible="False" Canvas.ZIndex="20" Grid.RowSpan="3">
+                <Rectangle Fill="#BB000000" x:Name="touchFlyoutOverlay" PointerPressed="touchFlyoutOverlay_PointerPressed" />
+                <Grid x:Name="touchFlyoutMainGrid" Padding="0,0,0,5" ManipulationMode="All" ManipulationDelta="touchFlyoutMainGrid_ManipulationDelta" ManipulationCompleted="touchFlyoutMainGrid_ManipulationCompleted" BorderThickness="2" VerticalAlignment="Top" HorizontalAlignment="Left" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                    <Grid.BorderBrush>
+                        <SolidColorBrush Color="{ThemeResource SystemChromeLowColor}"/>
+                    </Grid.BorderBrush>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Background="Transparent" IsRightTapEnabled="True" RightTapped="Album_RightTapped" IsHoldingEnabled="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid Background="Gray" Height="{Binding AlbumItemLength, ElementName=root, Mode=TwoWay}" Width="{Binding AlbumItemLength, ElementName=root, Mode=TwoWay}">
+                            <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF737373" />
+                            <Image x:Name="touchFlyoutAlbumCover" ImageOpened="AlbumCover_ImageOpened" Opacity="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        </Grid>
+                        <StackPanel Grid.Row="1" Margin="5,0,5,0" MaxWidth="{Binding AlbumItemLength, ElementName=root, Mode=TwoWay}">
+                            <TextBlock Margin="0,5,0,0" Grid.Row="1" x:Name="touchFlyoutAlbumName" FontSize="12" FontWeight="Medium" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" TextAlignment="Left" />
+                            <TextBlock Margin="0,5,0,0" Grid.Row="2" x:Name="touchFlyoutArtistName" FontSize="9" TextWrapping="NoWrap" TextAlignment="Left" />
+                        </StackPanel>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                        <Button Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Style="{StaticResource IconButtonStyle}" Content="" x:Name="touchFlyoutPlayButton" Click="touchFlyoutPlayButton_Click" FontSize="20" Margin="0,5,10,5" />
+                        <Button Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Style="{StaticResource IconButtonStyle}" Content="" x:Name="touchFlyoutMoreButton" Click="touchFlyoutMoreButton_Click" FontSize="20" Margin="0,5,0,5" />
+                    </StackPanel>
+
+                </Grid>
+            </Grid>-->
+            <!--<Grid Visibility="Collapsed" x:Name="bioGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="22" FontWeight="Thin" Text="Biografia" />
+            <TextBlock Grid.Row="1" IsTextSelectionEnabled="True" FontWeight="Thin" FontSize="14" x:Name="bio" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" TextAlignment="Justify" Margin="3" />
+            <Button Grid.Row="2" HorizontalAlignment="Right" Content="Ler mais..." Style="{StaticResource InlineButtonStyle}" Margin="3" />
+        </Grid>-->
+
+        </Grid>
+    </Grid>
+</Page>

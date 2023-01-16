@@ -1,0 +1,215 @@
+﻿<Page
+    x:Class="AudictiveMusicUWP.Gui.Pages.StartPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudictiveMusicUWP.Gui.UC"
+    xmlns:converter="using:AudictiveMusicUWP.Gui.Util"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <SuppressNavigationTransitionInfo />
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Page.Resources>
+        <converter:IsNowPlayingConverter x:Key="IsNowPlayingConverter" />
+        <Storyboard x:Key="OpenPageTransition" Completed="pageTransition_Completed">
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="ExitPageTransition">
+            <DoubleAnimation Duration="0:0:0.2" To="0.9" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="0.9" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.1" To="0" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid>
+        <ProgressRing x:Name="progress" IsActive="true" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" Height="50" />
+        <Grid x:Name="layoutRoot" RenderTransformOrigin="0.5, 0.5" Opacity="1">
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleX="0.9" ScaleY="0.9" x:Name="layoutRootScale" />
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.5" Color="{ThemeResource SystemChromeLowColor}" />
+                </Grid.Background>
+                <TextBlock x:Name="pageTitle" VerticalAlignment="Center" Margin="12,0" x:Uid="LetsStart" Text="Let's start!" FontWeight="Bold" FontSize="25" TextTrimming="CharacterEllipsis" />
+                <Button Grid.Column="2" Width="55" x:Name="settingsButton" VerticalAlignment="Stretch" FontFamily="Segoe UI Symbol" FontSize="20" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Click="settingsButton_Click" Content="" Style="{StaticResource IconButtonStyle}" />
+            
+            </Grid>
+
+            <ScrollViewer Grid.Row="1" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Auto">
+                <Grid Padding="0,0,0,110">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
+                    </Grid.RowDefinitions>
+                    <Grid.ChildrenTransitions>
+                        <TransitionCollection>
+                            <AddDeleteThemeTransition />
+                            <!--<RepositionThemeTransition />-->
+                        </TransitionCollection>
+                    </Grid.ChildrenTransitions>
+                    <TextBlock Text="Quick actions" x:Uid="QuickActions" Style="{ThemeResource SubtitleTextBlockStyle}" TextAlignment="Center" Margin="10" TextWrapping="Wrap" />
+
+                    <Viewbox x:Name="topButtonsViewBox" Height="55" Grid.Row="1" Stretch="Uniform" Margin="0,0,0,15" HorizontalAlignment="Stretch">
+                        <Grid x:Name="topButtonsContainer" HorizontalAlignment="Stretch" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="" x:Name="shuffleButton" Click="shuffleButton_Click" FontSize="22" Grid.Column="0" Style="{StaticResource CircleButtonStyle}" Width="80" Height="80" Margin="7,7,7,7">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush.RelativeTransform>
+                                            <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="-45"/>
+                                        </LinearGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FFFF7B41"/>
+                                        <GradientStop Color="#FF691C11" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+
+                            <Button Content="" x:Name="collectionButton" Click="collectionButton_Click" FontSize="22" Grid.Column="1" Style="{StaticResource CircleButtonStyle}" Width="80" Height="80" Margin="7,7,7,7">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush.RelativeTransform>
+                                            <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="-45"/>
+                                        </LinearGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FF417FFF"/>
+                                        <GradientStop Color="#FF52F5DC" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+
+                            <Button Content="" x:Name="favoritesButton" Click="favoritesButton_Click" FontSize="22" Grid.Column="2" Style="{StaticResource CircleButtonStyle}" Width="80" Height="80" Margin="7,7,7,7">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush.RelativeTransform>
+                                            <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="-45"/>
+                                        </LinearGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FFF8F414"/>
+                                        <GradientStop Color="#FF696211" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+
+                            <Button Content="" x:Name="foldersButton" Click="foldersButton_Click" FontSize="22" Grid.Column="3" Style="{StaticResource CircleButtonStyle}" Width="80" Height="80" Margin="7,7,7,7">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush.RelativeTransform>
+                                            <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="-45"/>
+                                        </LinearGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FF5441FF"/>
+                                        <GradientStop Color="#FF631169" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+
+                            <Button Content="" x:Name="searchButton" Click="searchButton_Click" FontSize="22" Grid.Column="4" Style="{StaticResource CircleButtonStyle}" Width="80" Height="80" Margin="7,7,7,7">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush.RelativeTransform>
+                                            <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="-45"/>
+                                        </LinearGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FFFF4141"/>
+                                        <GradientStop Color="#FF691C11" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </Grid>
+                    </Viewbox>
+
+                    <TextBlock Text="A suggestion for you" x:Uid="SuggestionForYou" Visibility="{Binding ElementName=card1, Path=Visibility}" Grid.Row="2" Style="{ThemeResource SubtitleTextBlockStyle}" TextAlignment="Center" Margin="10" TextWrapping="Wrap" />
+
+                    <local:Card x:Name="card1" Visibility="Collapsed" Grid.Row="3" MaxWidth="320" HorizontalAlignment="Stretch" Margin="20,0,20,15" />
+
+                    
+                    
+                    <!--<TextBlock Text="Some suggestions for you..." Style="{ThemeResource SubtitleTextBlockStyle}" TextAlignment="Center" TextWrapping="Wrap" />
+                    <VariableSizedWrapGrid x:Name="tilesContainer" Grid.Row="1" MaximumRowsOrColumns="6" Orientation="Horizontal" Margin="10">
+                        <visualizer:PreviewTile
+             Margin="2" IsAnimationEnabled="True" TileSize="Wide" HorizontalAlignment="Left" VerticalAlignment="Bottom" VariableSizedWrapGrid.RowSpan="2" VariableSizedWrapGrid.ColumnSpan="4"/>
+                        <visualizer:PreviewTile x:Name="playButton" Tapped="playButton_Tapped"
+             Margin="2" IsAnimationEnabled="True" TileSize="Small" SizeChanged="PreviewTile_SizeChanged" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="4" VariableSizedWrapGrid.RowSpan="1" VariableSizedWrapGrid.ColumnSpan="1"/>
+                        <visualizer:PreviewTile
+             Margin="2" IsAnimationEnabled="True" TileSize="Medium" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" VariableSizedWrapGrid.RowSpan="2" VariableSizedWrapGrid.ColumnSpan="2"/>
+                        <visualizer:PreviewTile
+             Margin="2" IsAnimationEnabled="True" TileSize="Small" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="3" VariableSizedWrapGrid.RowSpan="2" VariableSizedWrapGrid.ColumnSpan="2"/>
+
+                        <visualizer:PreviewTile
+             Margin="2" IsAnimationEnabled="True" TileSize="Medium" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="4" Grid.Column="0" VariableSizedWrapGrid.RowSpan="2" VariableSizedWrapGrid.ColumnSpan="2"/>
+                        <visualizer:PreviewTile
+             Margin="2" IsAnimationEnabled="True" TileSize="Wide" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="4" Grid.Column="1" VariableSizedWrapGrid.RowSpan="2" VariableSizedWrapGrid.ColumnSpan="6"/>
+
+                    </VariableSizedWrapGrid>-->
+
+                </Grid>
+            </ScrollViewer>
+            <!--<StackPanel Margin="10" Orientation="Horizontal" Grid.Row="2">
+            <Button Content="71x71" Margin="2.5" Click="Button_Click" />
+            <Button Content="150x150" Margin="2.5" Click="Button_Click_1" />
+            <Button Content="310x150" Margin="2.5" Click="Button_Click_2" />
+            <Button Content="310x310" Margin="2.5" Click="Button_Click_3" />
+            <Button Content="Update tile!" Margin="2.5" Click="Update_Click" />
+        </StackPanel>-->
+        </Grid>
+    </Grid>
+</Page>

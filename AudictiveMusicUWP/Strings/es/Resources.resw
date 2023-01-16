@@ -1,0 +1,1161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
+  <data name="AboutDevelopedBy.Text" xml:space="preserve">
+    <value>Esta aplicación es elaborado por</value>
+  </data>
+  <data name="AddToFavorites.Text" xml:space="preserve">
+    <value>Agregar a los favoritos</value>
+  </data>
+  <data name="AddToFavoritesString" xml:space="preserve">
+    <value>Agregar a los favoritos</value>
+  </data>
+  <data name="AddToNowPlaying.Text" xml:space="preserve">
+    <value>Añadir a la reproducción</value>
+  </data>
+  <data name="AddToPlaylist" xml:space="preserve">
+    <value>Añadir a la reproducción</value>
+  </data>
+  <data name="AddToPlaylistFile" xml:space="preserve">
+    <value>Añadir a lista de reproducción...</value>
+  </data>
+  <data name="AddToPlaylistMenu.Text" xml:space="preserve">
+    <value>Añadir a lista de reproducción...</value>
+  </data>
+  <data name="Album" xml:space="preserve">
+    <value>Álbum</value>
+  </data>
+  <data name="Albums.Text" xml:space="preserve">
+    <value>Álbumes</value>
+  </data>
+  <data name="AlbumsString" xml:space="preserve">
+    <value>Álbumes</value>
+  </data>
+  <data name="AppTheme.Text" xml:space="preserve">
+    <value>Tema de la aplicación</value>
+  </data>
+  <data name="AppThemeDark.Content" xml:space="preserve">
+    <value>Oscuro</value>
+  </data>
+  <data name="AppThemeLight.Content" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="AppThemeSystem.Content" xml:space="preserve">
+    <value>Usar configuración del sistema</value>
+  </data>
+  <data name="Artist" xml:space="preserve">
+    <value>Artista</value>
+  </data>
+  <data name="Artists.Text" xml:space="preserve">
+    <value>Artistas</value>
+  </data>
+  <data name="ArtistsString" xml:space="preserve">
+    <value>Artistas</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>por </value>
+  </data>
+  <data name="ChoosePlaylistFileString" xml:space="preserve">
+    <value>Elija la lista</value>
+  </data>
+  <data name="CollectionSection.Title" xml:space="preserve">
+    <value>Colección</value>
+  </data>
+  <data name="Credits.Title" xml:space="preserve">
+    <value>Créditos</value>
+  </data>
+  <data name="Credits1.Text" xml:space="preserve">
+    <value>Para los metadatos de música: </value>
+  </data>
+  <data name="Credits2.Text" xml:space="preserve">
+    <value>Para informaciónes de los vídeos de Youtube: </value>
+  </data>
+  <data name="DownloadImages.Header" xml:space="preserve">
+    <value>Descarga imágenes de los artistas</value>
+  </data>
+  <data name="DownloadImagesCaption.Text" xml:space="preserve">
+    <value>Las imágenes de los artistas se descargan (si está disponible) para proporcionar una mejor experiencia de usuario. Pueden aplicarse cargos si se utiliza la conexión de datos.</value>
+  </data>
+  <data name="EditFavoritesTitle.Text" xml:space="preserve">
+    <value>Toque, mantenga y arrastre para ordenar sus favoritos. También puede seleccionar más de uno y mover todos juntos.</value>
+  </data>
+  <data name="FavoritesMargin.Header" xml:space="preserve">
+    <value>Mostrar espacios entre los bloques</value>
+  </data>
+  <data name="FavoritesMarginCaption.Text" xml:space="preserve">
+    <value>Añade o elimina los espacios entre los bloques en la sección de favoritos</value>
+  </data>
+  <data name="FavoritesMarginString" xml:space="preserve">
+    <value>Mostrar espacios entre los bloques</value>
+  </data>
+  <data name="FavoritesSettings.Text" xml:space="preserve">
+    <value>Opciones de favoritos</value>
+  </data>
+  <data name="FavoritesSettingsString" xml:space="preserve">
+    <value>Opciones de favoritos</value>
+  </data>
+  <data name="Favorites.Text" xml:space="preserve">
+    <value>Favoritos</value>
+  </data>
+  <data name="FavoritesTileSize.Header" xml:space="preserve">
+    <value>Mostrar más bloques</value>
+  </data>
+  <data name="FavoritesTileSizeCaption.Text" xml:space="preserve">
+    <value>Cambiar el tamaño de los bloques que se muestran en la sección de favoritos</value>
+  </data>
+  <data name="FavoritesTileSizeString" xml:space="preserve">
+    <value>Mostrar más bloques</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>ES</value>
+  </data>
+  <data name="Later" xml:space="preserve">
+    <value>Ahora no</value>
+  </data>
+  <data name="Loading.Text" xml:space="preserve">
+    <value>Cargando...</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoFavoritesMessage.Text" xml:space="preserve">
+    <value>Sus artistas favoritos aparecerán aquí.</value>
+  </data>
+  <data name="NoResultsFor" xml:space="preserve">
+    <value>No hay resultados para '</value>
+  </data>
+  <data name="NoSongsFromArtist.Text" xml:space="preserve">
+    <value>Usted no tiene ninguna música de este artista.</value>
+  </data>
+  <data name="NoSongsMessage.Text" xml:space="preserve">
+    <value>Usted no tiene ninguna música de este artista.</value>
+  </data>
+  <data name="NoTile.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Now" xml:space="preserve">
+    <value>Ahora</value>
+  </data>
+  <data name="OffContent" xml:space="preserve">
+    <value>Desativado</value>
+  </data>
+  <data name="OnContent" xml:space="preserve">
+    <value>Ativado</value>
+  </data>
+  <data name="Pin" xml:space="preserve">
+    <value>Fijar al inicio</value>
+  </data>
+  <data name="Play" xml:space="preserve">
+    <value>Reproducir</value>
+  </data>
+  <data name="Playback.Text" xml:space="preserve">
+    <value>Reproducción</value>
+  </data>
+  <data name="PlayButton.Content" xml:space="preserve">
+    <value>Reproducir todo</value>
+  </data>
+  <data name="PlayCollection.Text" xml:space="preserve">
+    <value>Reproducir su colección</value>
+  </data>
+  <data name="PlayerStartup.Header" xml:space="preserve">
+    <value>Mostrar el reproductor al iniciar</value>
+  </data>
+  <data name="PlayerStartupCaption.Text" xml:space="preserve">
+    <value>El reproductor se muestra al iniciar la aplicación si hay una canción en la cola de reproducción</value>
+  </data>
+  <data name="Playing" xml:space="preserve">
+    <value>Reproduciendo</value>
+  </data>
+  <data name="PlaylistsString" xml:space="preserve">
+    <value>Listas de reproducción</value>
+  </data>
+  <data name="PlayOnlyThisSong" xml:space="preserve">
+    <value>Jugar sólo esta canción</value>
+  </data>
+  <data name="PostVideo.Text" xml:space="preserve">
+    <value>Publique un vídeo</value>
+  </data>
+  <data name="PreparingCollection.Text" xml:space="preserve">
+    <value>Preparando su colección...</value>
+  </data>
+  <data name="RateAndReview.Text" xml:space="preserve">
+    <value>Evaluar la aplicación</value>
+  </data>
+  <data name="RateApp.Content" xml:space="preserve">
+    <value>EVALUAR</value>
+  </data>
+  <data name="RefreshCollection.Text" xml:space="preserve">
+    <value>Actualizar su colección</value>
+  </data>
+  <data name="ReloadCollection.Text" xml:space="preserve">
+    <value>Actualizar su colección</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value>Búsqueda</value>
+  </data>
+  <data name="SearchCollection.PlaceholderText" xml:space="preserve">
+    <value>Buscar en su colección</value>
+  </data>
+  <data name="Settings.Text" xml:space="preserve">
+    <value>Ajustes</value>
+  </data>
+  <data name="ShuffleMode.Header" xml:space="preserve">
+    <value>Aleatorio</value>
+  </data>
+  <data name="ShuffleModeCaption.Text" xml:space="preserve">
+    <value>Esto no afecta a la reproducción actual</value>
+  </data>
+  <data name="Songs.Text" xml:space="preserve">
+    <value>Canciones</value>
+  </data>
+  <data name="SongsString" xml:space="preserve">
+    <value>Canciones</value>
+  </data>
+  <data name="TileAutoPlay.Header" xml:space="preserve">
+    <value>Reproducir a abrir un azulejo</value>
+  </data>
+  <data name="TileAutoPlayCaption.Text" xml:space="preserve">
+    <value>Al iniciar la aplicación a través de azulejo de un artista, si está habilitado, comienza auomaticamente la reproducción</value>
+  </data>
+  <data name="Unpin" xml:space="preserve">
+    <value>Desanclar</value>
+  </data>
+  <data name="UnpinMessageTile.Text" xml:space="preserve">
+    <value>¿Quieres eliminar este azulejo?</value>
+  </data>
+  <data name="Version.Text" xml:space="preserve">
+    <value>Versión: </value>
+  </data>
+  <data name="Volume.Header" xml:space="preserve">
+    <value>Volumen</value>
+  </data>
+  <data name="VolumeCaption.Text" xml:space="preserve">
+    <value>Definir las preferencias de volumen</value>
+  </data>
+  <data name="VolumeSlider.Header" xml:space="preserve">
+    <value>Volumen</value>
+  </data>
+  <data name="VolumeSliderCaption.Text" xml:space="preserve">
+    <value>Definir las preferencias de volumen</value>
+  </data>
+  <data name="WhatsNew.Text" xml:space="preserve">
+    <value>¿Qué hay de nuevo en esta versión?</value>
+  </data>
+  <data name="WhatsNewTutorial1.Text" xml:space="preserve">
+    <value>Diapositiva de abajo hacia arriba para un acceso rápido a la barra de progresso de la música</value>
+  </data>
+  <data name="WhatsNewTutorial2.Text" xml:space="preserve">
+    <value>Toque y mantenga en un álbum para ver su contenido al instante</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="YesBtn.Content" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="AlbumsMenu.Content" xml:space="preserve">
+    <value>Álbumes</value>
+  </data>
+  <data name="ArtistsMenu.Content" xml:space="preserve">
+    <value>Artistas</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="DeletePlaylistMessage" xml:space="preserve">
+    <value>¿Estás seguro que desea eliminar esta lista de reproducción? No afectará suas archivos.</value>
+  </data>
+  <data name="DeletePlaylistMessageTitle" xml:space="preserve">
+    <value>Eliminar lista de reproducción</value>
+  </data>
+  <data name="NowPlayingMenu.Content" xml:space="preserve">
+    <value>Reproduciendo ahora</value>
+  </data>
+  <data name="PlaylistEditorTitle.Text" xml:space="preserve">
+    <value>Para reordenar la lista de reproducción, toque, mantenga y arrastre la canción que desea. Usted puede también seleccionar más de una y arrastrarlos juntos.</value>
+  </data>
+  <data name="PlaylistsMenu.Content" xml:space="preserve">
+    <value>Listas de reproducción</value>
+  </data>
+  <data name="RemoveSongEditor.Content" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="SettingsMenu.Content" xml:space="preserve">
+    <value>Ajustes</value>
+  </data>
+  <data name="SongsMenu.Content" xml:space="preserve">
+    <value>Canciones</value>
+  </data>
+  <data name="Song" xml:space="preserve">
+    <value>Canción</value>
+  </data>
+  <data name="Feedback.Text" xml:space="preserve">
+    <value>Comentarios</value>
+  </data>
+  <data name="FeedbackSubtitle.Text" xml:space="preserve">
+    <value>Cuéntanos lo que piensas acerca de la aplicación</value>
+  </data>
+  <data name="ThanksFeedback" xml:space="preserve">
+    <value>¡Agradecemos sus comentarios!</value>
+  </data>
+  <data name="FeedbackButton.Content" xml:space="preserve">
+    <value>Envíe sus comentarios</value>
+  </data>
+  <data name="SettingsString" xml:space="preserve">
+    <value>Ajustes</value>
+  </data>
+  <data name="WelcomeAudictive.Text" xml:space="preserve">
+    <value>¡Bienvenido a Audictive Music!</value>
+  </data>
+  <data name="WelcomeAudictiveCaption.Text" xml:space="preserve">
+    <value>¡WSCenter Music es ahora Audictive Music! Todas sus configuraciónes personales se han mantenido y la aplicación está preparada para uso.</value>
+  </data>
+  <data name="ContactSupport.Text" xml:space="preserve">
+    <value>Hable con el apoyo</value>
+  </data>
+  <data name="WebSearchProvider" xml:space="preserve">
+    <value>http://www.last.fm/es/music/</value>
+  </data>
+  <data name="AlbumMenu.Text" xml:space="preserve">
+    <value>Álbum</value>
+  </data>
+  <data name="ArtistMenu.Text" xml:space="preserve">
+    <value>Artista</value>
+  </data>
+  <data name="AutoCheckCollectionCaption.Text" xml:space="preserve">
+    <value>Habilita o deshabilita la comprobación automática de tu biblioteca musical. Puede no funcionar correctamente en modo de ahorro de batería.</value>
+  </data>
+  <data name="AutoCheckCollectionToggle.Header" xml:space="preserve">
+    <value>Comprobación automática</value>
+  </data>
+  <data name="AutoVerificationTitle.Text" xml:space="preserve">
+    <value>¿Quieres comprobar automáticamente nuevas canciones en su biblioteca de música?</value>
+  </data>
+  <data name="SongMenu.Text" xml:space="preserve">
+    <value>Canción</value>
+  </data>
+  <data name="SortByButton.Content" xml:space="preserve">
+    <value>Ordenar por:</value>
+  </data>
+  <data name="TransparentTileToggle.Header" xml:space="preserve">
+    <value>Azulejo transparente</value>
+  </data>
+  <data name="ContactSupportMenu.Content" xml:space="preserve">
+    <value>Hable con el apoyo</value>
+  </data>
+  <data name="Menu.Content" xml:space="preserve">
+    <value>MENÚ</value>
+  </data>
+  <data name="AskForDonation" xml:space="preserve">
+    <value>Haga una donación</value>
+  </data>
+  <data name="AskForDonationChooseValue" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AskForDonationErrorMessage" xml:space="preserve">
+    <value>Lamentablemente, no fue posible completar su donación. Inténtalo de nuevo en unos minutos :)</value>
+  </data>
+  <data name="AskForDonationErrorTitle" xml:space="preserve">
+    <value>No se ha podido completar su donación</value>
+  </data>
+  <data name="AskForDonationMessage" xml:space="preserve">
+    <value>Su contribución es muy importante para mantener la aplicación actualizada</value>
+  </data>
+  <data name="AskForDonationTitle" xml:space="preserve">
+    <value>¿Te gustaría contribuir con el desarrollador?</value>
+  </data>
+  <data name="GeneralImprovements.Text" xml:space="preserve">
+    <value>Mejoras generales</value>
+  </data>
+  <data name="MakeDonationBtn.Content" xml:space="preserve">
+    <value>Colaborar con el desarrollador</value>
+  </data>
+  <data name="OtherFeatures.Text" xml:space="preserve">
+    <value>Otras funciones</value>
+  </data>
+  <data name="Proceed" xml:space="preserve">
+    <value>Completar</value>
+  </data>
+  <data name="SpecialThanksTo.Text" xml:space="preserve">
+    <value>Agradecimientos especiales a:</value>
+  </data>
+  <data name="StopRemindingMe" xml:space="preserve">
+    <value>Dejar de recordarme</value>
+  </data>
+  <data name="WhatsNewButton.Content" xml:space="preserve">
+    <value>¿QUÉ HAY DE NUEVO EN ESTA VERSIÓN?</value>
+  </data>
+  <data name="Bio.Text" xml:space="preserve">
+    <value>Biografía</value>
+  </data>
+  <data name="DiscoverOn.Content" xml:space="preserve">
+    <value>Descubre en </value>
+  </data>
+  <data name="ReadMore.Content" xml:space="preserve">
+    <value>Leer más</value>
+  </data>
+  <data name="RelatedArtists.Text" xml:space="preserve">
+    <value>Artistas relacionados</value>
+  </data>
+  <data name="DeleteDataButton.Content" xml:space="preserve">
+    <value>Eliminar datos de la aplicación</value>
+  </data>
+  <data name="DeleteDataCaption.Text" xml:space="preserve">
+    <value>Si algo no funciona como debería, puede borrar todos los datos y configuraciones guardados por la aplicación. La aplicación se puede cerrar para aplicar los cambios.</value>
+  </data>
+  <data name="DeleteDataChooseAlbumCovers.Content" xml:space="preserve">
+    <value>Restablecer portadas de álbumes</value>
+  </data>
+  <data name="DeleteDataChooseEverything.Content" xml:space="preserve">
+    <value>Eliminar todo</value>
+  </data>
+  <data name="DeleteDataChooseHeader.Text" xml:space="preserve">
+    <value>Elija lo que desea eliminar</value>
+  </data>
+  <data name="DeleteDataChooseImages.Content" xml:space="preserve">
+    <value>Imágenes</value>
+  </data>
+  <data name="DeleteDataChooseSettings.Content" xml:space="preserve">
+    <value>Configuraciones personales</value>
+  </data>
+  <data name="DeleteDataHeader.Text" xml:space="preserve">
+    <value>Reset application</value>
+  </data>
+  <data name="LastPlayedSong" xml:space="preserve">
+    <value>Última reproducción</value>
+  </data>
+  <data name="WhatsNext" xml:space="preserve">
+    <value>En seguida</value>
+  </data>
+  <data name="Medium.Text" xml:space="preserve">
+    <value>Medio</value>
+  </data>
+  <data name="PlayMenu.Text" xml:space="preserve">
+    <value>Reproducir</value>
+  </data>
+  <data name="Resize.Text" xml:space="preserve">
+    <value>Redimensionar</value>
+  </data>
+  <data name="Small.Text" xml:space="preserve">
+    <value>Pequeño</value>
+  </data>
+  <data name="UnpinMenu.Text" xml:space="preserve">
+    <value>Desanclar</value>
+  </data>
+  <data name="Wide.Text" xml:space="preserve">
+    <value>Amplio</value>
+  </data>
+  <data name="Initializing" xml:space="preserve">
+    <value>Inicializando</value>
+  </data>
+  <data name="LoadCollectionFullVerification.Text" xml:space="preserve">
+    <value>Exploración completa</value>
+  </data>
+  <data name="LoadCollectionNewItems.Text" xml:space="preserve">
+    <value>Exploración rápida</value>
+  </data>
+  <data name="LockScreenToggle.Header" xml:space="preserve">
+    <value>Actualizar la imagen de la pantalla de bloqueo</value>
+  </data>
+  <data name="LockScreenToggleCaption.Text" xml:space="preserve">
+    <value>Actualiza la pantalla de bloqueo con la imagen del artista en reproducción. Para volver a la imagen pre-definido, vaya a Configuración&gt; Personalización&gt; Pantalla de bloqueo.</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value> de </value>
+  </data>
+  <data name="DownloadImagesConnection.Header" xml:space="preserve">
+    <value>Descargar usando:</value>
+  </data>
+  <data name="DownloadImagesConnectionCaption.Text" xml:space="preserve">
+    <value>Elige cómo se descargarán las imágenes.</value>
+  </data>
+  <data name="MobileConnection.Content" xml:space="preserve">
+    <value>Datos de telefonía móvil</value>
+  </data>
+  <data name="WiFiAndMobileConnection.Content" xml:space="preserve">
+    <value>Wi-Fi, Ethernet o datos de telefonía móvil</value>
+  </data>
+  <data name="NoRecentPlaysMessage.Text" xml:space="preserve">
+    <value>No hay reproducción reciente. Toca algo para qué aparezca aquí.</value>
+  </data>
+  <data name="FeatureLiveTile.Text" xml:space="preserve">
+    <value>¡La pantalla de inicio gana vida! ¿Le gustaría de activar el azulejo en vivo?</value>
+  </data>
+  <data name="FeatureLockScreen.Text" xml:space="preserve">
+    <value>¡Y en la pantalla de bloqueo, también! ¿Le gustaría de tener la imagen del artista en la pantalla de bloqueo?</value>
+  </data>
+  <data name="LiveTileToggle.Header" xml:space="preserve">
+    <value>Actualizar bloque dinámico</value>
+  </data>
+  <data name="LiveTileToggleCaption.Text" xml:space="preserve">
+    <value>El bloque de la aplicación en la pantalla principal muestra información sobre la canción que se está reproduciendo.</value>
+  </data>
+  <data name="PlayAllSecondaryTileButtonHeader.Text" xml:space="preserve">
+    <value>Bloque 'Reproducir todo'</value>
+  </data>
+  <data name="PlayAllSecondaryTileSubtitle.Text" xml:space="preserve">
+    <value>Tenga un bloque para reproducir toda su colección directamente desde la pantalla de inicio.</value>
+  </data>
+  <data name="PlayEverything" xml:space="preserve">
+    <value>Reproducir todo</value>
+  </data>
+  <data name="WiFiAndEthernet.Content" xml:space="preserve">
+    <value>Wi-Fi o Ethernet</value>
+  </data>
+  <data name="TapToResume.Content" xml:space="preserve">
+    <value>Presiona para reanudar</value>
+  </data>
+  <data name="WhatsNextNotification.Header" xml:space="preserve">
+    <value>Mostrar la siguiente canción en el centro de acción</value>
+  </data>
+  <data name="WhatsNextNotificationCaption.Text" xml:space="preserve">
+    <value>Si está activado, el nombre y el artista de la siguiente canción de la cola aparecerán en el centro de acción</value>
+  </data>
+  <data name="Feature1" xml:space="preserve">
+    <value>Organización de álbumes por título o nombre de artista</value>
+  </data>
+  <data name="Feature2" xml:space="preserve">
+    <value>Deslizarse hacia arriba y hacia abajo en la carátula del álbum para saltar canciones</value>
+  </data>
+  <data name="Feature3" xml:space="preserve">
+    <value>Reanudar la última reproducción si se ha interrumpido por otra aplicación</value>
+  </data>
+  <data name="Feature4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Feature5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Feature6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Feature7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Improvement1" xml:space="preserve">
+    <value>Si la posición de la música en reproducción actual es superior a 3 segundos, al presionar el botón "anterior" se accede a la posición inicial de la canción.</value>
+  </data>
+  <data name="Improvement2" xml:space="preserve">
+    <value>Mejoras en el interfaz de usuario</value>
+  </data>
+  <data name="Improvement3" xml:space="preserve">
+    <value>Mejoras en la verificación de las canciones y el rendimiento general</value>
+  </data>
+  <data name="CustomPopupAfterConfusedReview" xml:space="preserve">
+    <value>Veo que se enfrentan a algunos problemas para usar Audictive Música. Podemos ayudarle! Cuéntanos un poco acerca de su experiencia con la aplicación, para que podamos responder a sus preguntas y que sea mejor para todo el mundo!</value>
+  </data>
+  <data name="CustomPopupAfterDisappointedReview" xml:space="preserve">
+    <value>Estábamos muy tristes de descubrir que no está disfrutando de la música Audictive. Cuéntanos un poco acerca de su experiencia con la aplicación, por lo que podemos hacerlo aún mejor.</value>
+  </data>
+  <data name="CustomPopupAfterHappyReview" xml:space="preserve">
+    <value>¡Que maravilla! Estamos muy emocionados con esta noticia. ¿Le importaría de compartir su amor por el Audictive Music y escribir una reseña en la tienda?</value>
+  </data>
+  <data name="CustomPopupAfterHappyReviewYes" xml:space="preserve">
+    <value>¡Si, claro!</value>
+  </data>
+  <data name="CustomPopupCancelButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CustomPopupDeletePlaylist" xml:space="preserve">
+    <value>¿Estás seguro que desea eliminar esta lista de reproducción? No afectará sus archivos.</value>
+  </data>
+  <data name="CustomPopupFeedbackHubNotSupported" xml:space="preserve">
+    <value>Hmm ... Parece que el dispositivo no es compatible con Windows Hub de Feedback. Por favor seleccione otro método.</value>
+  </data>
+  <data name="CustomPopupFeeling" xml:space="preserve">
+    <value>¿Cómo se siente cuando se utiliza el Audictive Músic?</value>
+  </data>
+  <data name="CustomPopupNotNow" xml:space="preserve">
+    <value>Ahora no</value>
+  </data>
+  <data name="CustomPopupOnlyFeedback" xml:space="preserve">
+    <value>Nos encantaría saber lo que tiene que decir acerca de el Audictive Music Audictive! Elija el método que desea ponerse en contacto con nosotros.</value>
+  </data>
+  <data name="PlayNext" xml:space="preserve">
+    <value>Reproducir entonces</value>
+  </data>
+  <data name="RecentlyAdded" xml:space="preserve">
+    <value>Recientemente añadido</value>
+  </data>
+  <data name="RecentPlays" xml:space="preserve">
+    <value>Reproducciónes recientes</value>
+  </data>
+  <data name="RecentPlaysMenu.Content" xml:space="preserve">
+    <value>Historia</value>
+  </data>
+  <data name="WhatsNextNotificationSuppressPopup.Header" xml:space="preserve">
+    <value>Notificación silenciosa</value>
+  </data>
+  <data name="WhatsNextNotificationSuppressPopupCaption.Text" xml:space="preserve">
+    <value>Elija si desea o no mostrar una bandera de aviso. Una 'notificación silenciosa' sólo aparece en el centro de notificaciones / centro de acciones.</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Compartir</value>
+  </data>
+  <data name="AlbumPlural" xml:space="preserve">
+    <value>Álbumes</value>
+  </data>
+  <data name="AlbumSingular" xml:space="preserve">
+    <value>Album</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ChoosePlaylist.Text" xml:space="preserve">
+    <value>Elija la lista de reproducción:</value>
+  </data>
+  <data name="Done.Content" xml:space="preserve">
+    <value>Hecho</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Vacío</value>
+  </data>
+  <data name="ErrorInvalidNameChosen" xml:space="preserve">
+    <value>El nombre elegido no es válido.</value>
+  </data>
+  <data name="ForDevelopers.Text" xml:space="preserve">
+    <value>Para los desarrolladores</value>
+  </data>
+  <data name="MoreInfo.Content" xml:space="preserve">
+    <value>Más información...</value>
+  </data>
+  <data name="NamePlaylist" xml:space="preserve">
+    <value>Elija un nombre para tu lista de reproducción</value>
+  </data>
+  <data name="NamePlaylistHeader" xml:space="preserve">
+    <value>Escribe un nombre para tu lista de reproducción</value>
+  </data>
+  <data name="NewPlaylist.Content" xml:space="preserve">
+    <value>Lista nueva</value>
+  </data>
+  <data name="NoResults.Text" xml:space="preserve">
+    <value>No hemos podido encontrar nada que coincida con tu búsqueda</value>
+  </data>
+  <data name="Playlists.Text" xml:space="preserve">
+    <value>Listas de reproducción</value>
+  </data>
+  <data name="Rename" xml:space="preserve">
+    <value>Renombrar</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>¿qué quieres escuchar?</value>
+  </data>
+  <data name="ShareErrorMessage" xml:space="preserve">
+    <value>Hemos encontrado un error al intentar compartir este elemento. Si sigue enfrentando este error, envíenos sus comentarios.</value>
+  </data>
+  <data name="Shuffle.Content" xml:space="preserve">
+    <value>Aleatorio</value>
+  </data>
+  <data name="SongPlural" xml:space="preserve">
+    <value>Canciones</value>
+  </data>
+  <data name="SongSingular" xml:space="preserve">
+    <value>Canción</value>
+  </data>
+  <data name="TagLibReference.Text" xml:space="preserve">
+    <value>Esta aplicación utiliza la herramienta gratuita TagLib.Portable para leer los metadatos de música</value>
+  </data>
+  <data name="TapToSelectList.Text" xml:space="preserve">
+    <value>Toque para seleccionar una lista existente</value>
+  </data>
+  <data name="WindowsColorSettings.Content" xml:space="preserve">
+    <value>Configuración de color de Windows</value>
+  </data>
+  <data name="SearchMenu.Content" xml:space="preserve">
+    <value>Búsqueda</value>
+  </data>
+  <data name="AboutBtn.Content" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
+  <data name="AllowTransparency.Header" xml:space="preserve">
+    <value>Permitir efectos de transparencia</value>
+  </data>
+  <data name="AllowTransparencyCaption.Text" xml:space="preserve">
+    <value>Puede reducir el rendimiento de la aplicación. Es posible que algunos efectos no estén disponibles para todos los dispositivos de Windows y pueden requerir la actualización Windows 10 Creators (1703).</value>
+  </data>
+  <data name="ApplicationInfo.Text" xml:space="preserve">
+    <value>Información de la aplicación</value>
+  </data>
+  <data name="ColorOptions.Text" xml:space="preserve">
+    <value>Opciones de color</value>
+  </data>
+  <data name="ColorOptionsCaption.Text" xml:space="preserve">
+    <value>El esquema de colores de Audictive Music puede seguir la canción que se está reproduciendo.</value>
+  </data>
+  <data name="FindYourMusic.Content" xml:space="preserve">
+    <value>Encontrar tu música</value>
+  </data>
+  <data name="NoBtn.Content" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Permissions.Text" xml:space="preserve">
+    <value>Permisos</value>
+  </data>
+  <data name="PermissionsDownloadCellular.Header" xml:space="preserve">
+    <value>Permitir la descarga por conexión celular</value>
+  </data>
+  <data name="PermissionsDownloadLastFm.Text" xml:space="preserve">
+    <value>¿Permite que los datos de su biblioteca sean enviados para recibir las imágenes del artista?</value>
+  </data>
+  <data name="PermissionsDownloadLastFmCaption.Text" xml:space="preserve">
+    <value>No será posible mostrar las imágenes si no nos da ese permiso.</value>
+  </data>
+  <data name="SetUp.Text" xml:space="preserve">
+    <value>Ajuste a tu manera</value>
+  </data>
+  <data name="SetupCompleted.Text" xml:space="preserve">
+    <value>Audictive Music está listo para usar. ¡Explore su música!</value>
+  </data>
+  <data name="Storage.Text" xml:space="preserve">
+    <value>Almacenamiento</value>
+  </data>
+  <data name="SyncColorIn.Text" xml:space="preserve">
+    <value>Aplicar colores en:</value>
+  </data>
+  <data name="SyncColorInMenu.Content" xml:space="preserve">
+    <value>Menú lateral</value>
+  </data>
+  <data name="SyncColorInPlaybackBar.Content" xml:space="preserve">
+    <value>Barra de reproducción</value>
+  </data>
+  <data name="SyncColorInTitleBar.Content" xml:space="preserve">
+    <value>Barra de título</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="PlaybackStoppedToastContent" xml:space="preserve">
+    <value>Toca para continuar</value>
+  </data>
+  <data name="PlaybackStoppedToastHeader" xml:space="preserve">
+    <value>Reproducción detenida</value>
+  </data>
+  <data name="TapToResumeSwitchCaption.Text" xml:space="preserve">
+    <value>Debido a la política del sistema, la reproducción se detiene después de algún tiempo de inactividad</value>
+  </data>
+  <data name="ResumePlayback" xml:space="preserve">
+    <value>Reanudar la última reproducción</value>
+  </data>
+  <data name="AlbumsCovers.Text" xml:space="preserve">
+    <value>Portadas de álbumes:</value>
+  </data>
+  <data name="AppInfoMenuItem.Subtitle" xml:space="preserve">
+    <value>Versión de la aplicación y gracias</value>
+  </data>
+  <data name="AppInfoMenuItem.Title" xml:space="preserve">
+    <value>Información de la aplicación</value>
+  </data>
+  <data name="ArtistsPics.Text" xml:space="preserve">
+    <value>Imágenes de artistas:</value>
+  </data>
+  <data name="DataManagementMenuItem.Subtitle" xml:space="preserve">
+    <value>Administrar la biblioteca y los datos de la aplicación</value>
+  </data>
+  <data name="DataManagementMenuItem.Title" xml:space="preserve">
+    <value>Gestión de datos</value>
+  </data>
+  <data name="Everything.Text" xml:space="preserve">
+    <value>Todo:</value>
+  </data>
+  <data name="FeedbackMenuItem.Subtitle" xml:space="preserve">
+    <value>Enviar comentarios sobre esta versión</value>
+  </data>
+  <data name="FeedbackMenuItem.Title" xml:space="preserve">
+    <value>Comentarios</value>
+  </data>
+  <data name="NotificationsMenuItem.Subtitle" xml:space="preserve">
+    <value>Administrar las notificaciones de reproducción</value>
+  </data>
+  <data name="NotificationsMenuItem.Title" xml:space="preserve">
+    <value>Notificaciones y reproducción</value>
+  </data>
+  <data name="OtherData.Text" xml:space="preserve">
+    <value>Otros datos:</value>
+  </data>
+  <data name="PermissionsMenuItem.Subtitle" xml:space="preserve">
+    <value>Envío de información y descarga</value>
+  </data>
+  <data name="PermissionsMenuItem.Title" xml:space="preserve">
+    <value>Permisos</value>
+  </data>
+  <data name="Personalization.Text" xml:space="preserve">
+    <value>Personalización</value>
+  </data>
+  <data name="PersonalizationMenuItem.Subtitle" xml:space="preserve">
+    <value>Tema de aplicación, efectos visuales y pantalla de bloqueo</value>
+  </data>
+  <data name="PersonalizationMenuItem.Title" xml:space="preserve">
+    <value>Personalización</value>
+  </data>
+  <data name="SongsFound.Text" xml:space="preserve">
+    <value>Canciones encontradas:</value>
+  </data>
+  <data name="TryToFreeSpace.Content" xml:space="preserve">
+    <value>Try to free space</value>
+  </data>
+  <data name="ChooseLibraryBtn.Content" xml:space="preserve">
+    <value>Elige dónde encontrar tu música</value>
+  </data>
+  <data name="EmptyLibrary" xml:space="preserve">
+    <value>Su colección parece estar vacía</value>
+  </data>
+  <data name="EmptyLibraryDesktopTip" xml:space="preserve">
+    <value>¿No encuentra su música? ¿Estamos buscando en el lugar correcto?</value>
+  </data>
+  <data name="EmptyLibraryMobileTip" xml:space="preserve">
+    <value>Oops ... No encontramos nada en su colección. Añade tus canciones en la carpeta "Músicas" en el almacenamiento interno o extraíble.</value>
+  </data>
+  <data name="FindYourMusicCaption.Text" xml:space="preserve">
+    <value>Si alguna de sus canciones se cambia fuera de la aplicación, debe volver a explorar su colección de música para corregir los metadatos incorrectos.</value>
+  </data>
+  <data name="ManageLibrary.Text" xml:space="preserve">
+    <value>Administrar su biblioteca</value>
+  </data>
+  <data name="ManageLibraryCaption.Text" xml:space="preserve">
+    <value>Agregar o quitar carpetas de tu biblioteca de música</value>
+  </data>
+  <data name="ManageLibraryNothingToDisplay.Text" xml:space="preserve">
+    <value>No hay ninguna carpeta en su biblioteca de música. Añadir algunas para poder disfrutar de las características de la aplicación.</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+  <data name="StorageUsage.Text" xml:space="preserve">
+    <value>Espacio utilizado por Audictive Music</value>
+  </data>
+  <data name="TapToResumeSwitch.Header" xml:space="preserve">
+    <value>Notificación para reanudar la reproducción</value>
+  </data>
+  <data name="Collection.Text" xml:space="preserve">
+    <value>Colección</value>
+  </data>
+  <data name="CollectionMenu.Content" xml:space="preserve">
+    <value>Colección</value>
+  </data>
+  <data name="GoToAlbumString" xml:space="preserve">
+    <value>Ir al álbum</value>
+  </data>
+  <data name="GoToArtistString" xml:space="preserve">
+    <value>Ir al artista</value>
+  </data>
+  <data name="LetsStart.Text" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="QuickActions.Text" xml:space="preserve">
+    <value>Acciones rápidas</value>
+  </data>
+  <data name="Refresh.Content" xml:space="preserve">
+    <value>Recargar</value>
+  </data>
+  <data name="RemoveFromFavoritesString" xml:space="preserve">
+    <value>Eliminar de favoritos</value>
+  </data>
+  <data name="StartMenu.Content" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="SuggestionForYou.Text" xml:space="preserve">
+    <value>Una sugerencia para usted...</value>
+  </data>
+  <data name="AddToFavoritesCaption.Text" xml:space="preserve">
+    <value>Tener acceso fácil a la música que amas</value>
+  </data>
+  <data name="DevNews.Text" xml:space="preserve">
+    <value>Avisos del desarrollador</value>
+  </data>
+  <data name="GetTelegram.Content" xml:space="preserve">
+    <value>Obtener Telegram Messenger</value>
+  </data>
+  <data name="JoinTelegram.Content" xml:space="preserve">
+    <value>Suscríbete al canal</value>
+  </data>
+  <data name="JoinTelegramCaption.Text" xml:space="preserve">
+    <value>Regístrese en el canal de Audictive Music en Telegram Messenger y reciba avisos de nuevas actualizaciones.</value>
+  </data>
+  <data name="ClearSelection.Content" xml:space="preserve">
+    <value>Deshacer selección</value>
+  </data>
+  <data name="ItemSelectedPlural" xml:space="preserve">
+    <value>seleccionados</value>
+  </data>
+  <data name="ItemSelectedSingular" xml:space="preserve">
+    <value>seleccionado</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Título</value>
+  </data>
+  <data name="ArtistInLastfm" xml:space="preserve">
+    <value># en Last.fm</value>
+  </data>
+  <data name="Listeners" xml:space="preserve">
+    <value>oyentes</value>
+  </data>
+  <data name="Password.Header" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="RecentScrobbles.Text" xml:space="preserve">
+    <value>Scrobbling recientes</value>
+  </data>
+  <data name="Scrobbles" xml:space="preserve">
+    <value>scrobblings</value>
+  </data>
+  <data name="ScrobbleSettings" xml:space="preserve">
+    <value>Configuración de scrobbling</value>
+  </data>
+  <data name="SendScrobble.Header" xml:space="preserve">
+    <value>Permitir sincronizar tu lista de reproducción con Last.fm (Scrobbling)</value>
+  </data>
+  <data name="SignIn.Content" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="SignInLastFm" xml:space="preserve">
+    <value>Entrar en Last.fm</value>
+  </data>
+  <data name="SignInLastFmLong.Text" xml:space="preserve">
+    <value>Inicia sesión en tu cuenta de Last.fm:</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Desconectar</value>
+  </data>
+  <data name="SignUp.Content" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="TopAlbums.Text" xml:space="preserve">
+    <value>Álbumes más escuchados</value>
+  </data>
+  <data name="TopArtists.Text" xml:space="preserve">
+    <value>Artistas más escuchados</value>
+  </data>
+  <data name="TopTracks.Text" xml:space="preserve">
+    <value>Temas más escuchados</value>
+  </data>
+  <data name="Username.Header" xml:space="preserve">
+    <value>Nombre de usuario</value>
+  </data>
+  <data name="UsernamePasswordWrong.Text" xml:space="preserve">
+    <value>Nombre de usuario o contraseña incorrecta</value>
+  </data>
+  <data name="VisitProfile" xml:space="preserve">
+    <value>Visitar el perfil</value>
+  </data>
+  <data name="Timer.Text" xml:space="preserve">
+    <value>Temporizador</value>
+  </data>
+  <data name="TimerBox.Header" xml:space="preserve">
+    <value>Tiempo (en minutos):</value>
+  </data>
+  <data name="TimerBoxCaptionApproximately" xml:space="preserve">
+    <value>Aproximadamente # canciones</value>
+  </data>
+  <data name="TimerBoxCaptionError" xml:space="preserve">
+    <value>Inserta un número entre 4 y 60.</value>
+  </data>
+  <data name="TimerButton.Content" xml:space="preserve">
+    <value>Comenzar</value>
+  </data>
+  <data name="TimerCancelButton.Content" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="TimerCaption.Text" xml:space="preserve">
+    <value>La música se detendrá en algún momento después del intervalo especificado.</value>
+  </data>
+  <data name="TimerMenu" xml:space="preserve">
+    <value>Temporizador</value>
+  </data>
+  <data name="ThemeAccentColor.Text" xml:space="preserve">
+    <value>Color de acento:</value>
+  </data>
+  <data name="ThemeAccentColorAlbum.Content" xml:space="preserve">
+    <value>Usa el color del álbum</value>
+  </data>
+  <data name="ThemeAccentColorCustom.Content" xml:space="preserve">
+    <value>Usa un color personalizado</value>
+  </data>
+  <data name="ThemeAccentColorSystem.Content" xml:space="preserve">
+    <value>Usa el color de acento del sistema</value>
+  </data>
+  <data name="ThemeBlurAmount.Header" xml:space="preserve">
+    <value>Nivel de desenfoque en la pantalla de reproducción</value>
+  </data>
+  <data name="ThemeBlurAmountLabel.Text" xml:space="preserve">
+    <value>Los valores altos pueden disminuir el rendimiento de la aplicación</value>
+  </data>
+  <data name="ThemeGeneralBackground.Header" xml:space="preserve">
+    <value>Elija lo que desea mostrar en segundo plano:</value>
+  </data>
+  <data name="ThemeGeneralBackgroundAlbum.Content" xml:space="preserve">
+    <value>Imagen de portada del álbum</value>
+  </data>
+  <data name="ThemeGeneralBackgroundArtist.Content" xml:space="preserve">
+    <value>Imagen del artista</value>
+  </data>
+  <data name="ThemeGeneralBackgroundLabel.Text" xml:space="preserve">
+    <value>Si una imagen de artista no está disponible, la imagen de la carátula del álbum aparecerá en segundo plano.</value>
+  </data>
+  <data name="ThemeModernStyle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ThemeModernStyleLabel" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ThemeOptions.Text" xml:space="preserve">
+    <value>Opciones de tema:</value>
+  </data>
+  <data name="Themes" xml:space="preserve">
+    <value>Temas</value>
+  </data>
+  <data name="ThemeSelection.Text" xml:space="preserve">
+    <value>Elige un tema:</value>
+  </data>
+  <data name="ThemeSettings" xml:space="preserve">
+    <value>Configuraciones de tema</value>
+  </data>
+  <data name="PlaylistReorderMessage" xml:space="preserve">
+    <value>Ahora ha sido más fácil organizar su lista de reproducción. Inténtelo!</value>
+  </data>
+  <data name="PlaylistReorderMessageTitle" xml:space="preserve">
+    <value>Toque y arrastre para reordenar</value>
+  </data>
+  <data name="TapToDismiss" xml:space="preserve">
+    <value>Toque para dispensar</value>
+  </data>
+  <data name="ThemesMessage" xml:space="preserve">
+    <value>Hay nuevas opciones de personalización. Vaya a Configuración &gt; Personalización &gt; Temas</value>
+  </data>
+  <data name="ThemesMessageCaption" xml:space="preserve">
+    <value>Toque para ver las opciones de personalización</value>
+  </data>
+  <data name="AskForDonationThankMessage" xml:space="preserve">
+    <value>No puedo describir lo que estoy sintiendo en este momento ... ¡Con tu contribución, puedo seguir trabajando en Audictive Music!</value>
+  </data>
+  <data name="ThankYouSoMuch" xml:space="preserve">
+    <value>¡¡¡Muchas gracias!!!</value>
+  </data>
+  <data name="UnknownAlbum" xml:space="preserve">
+    <value>Álbum desconocido</value>
+  </data>
+  <data name="UnknownArtist" xml:space="preserve">
+    <value>Artista desconocido</value>
+  </data>
+</root>

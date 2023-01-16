@@ -1,0 +1,74 @@
+﻿<UserControl
+    x:Class="AudictiveMusicUWP.Gui.UC.PageFlyout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudictiveMusicUWP.Gui.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <Storyboard x:Key="ShowMegaFlyoutAnimation">
+            <DoubleAnimation To="1" Duration="0:0:0.3" EnableDependentAnimation="False" Storyboard.TargetName="megaFlyout" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="ShowMegaFlyoutAnimation_FromTouchGesture">
+            <DoubleAnimation To="1" Duration="0:0:0.3" EnableDependentAnimation="False" Storyboard.TargetName="megaFlyout" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation From="1.4" To="1" Duration="0:0:0.6" EnableDependentAnimation="False" Storyboard.TargetName="megaFlyoutMainGridScale" Storyboard.TargetProperty="ScaleX">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.2" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation From="1.4" To="1" Duration="0:0:0.6" EnableDependentAnimation="False" Storyboard.TargetName="megaFlyoutMainGridScale" Storyboard.TargetProperty="ScaleY">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.2" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+
+        <Storyboard x:Key="HideMegaFlyoutAnimation">
+            <DoubleAnimation To="0" Duration="0:0:0.3" EnableDependentAnimation="False" Storyboard.TargetName="megaFlyout" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid x:Name="megaFlyout" Opacity="0">
+            <Rectangle Fill="#BB000000" x:Name="megaFlyoutOverlay" Tapped="megaFlyoutOverlay_Tapped" PointerEntered="megaFlyoutOverlay_PointerEntered" />
+            <Grid x:Name="megaFlyoutMainGrid" RenderTransformOrigin="0.5,0.5" MaxWidth="700" MaxHeight="400" BorderThickness="2" PointerEntered="megaFlyout_PointerEntered">
+                <Grid.BorderBrush>
+                    <SolidColorBrush Color="{ThemeResource SystemChromeLowColor}"/>
+                </Grid.BorderBrush>
+                <Grid.Background>
+                    <SolidColorBrush Color="{ThemeResource SystemChromeLowColor}"/>
+                </Grid.Background>
+                <Grid.RenderTransform>
+                    <ScaleTransform x:Name="megaFlyoutMainGridScale" ScaleX="1" ScaleY="1" />
+                </Grid.RenderTransform>
+                <Frame x:Name="megaFlyoutFrame" Navigated="megaFlyoutFrame_Navigated" />
+
+                <Button HorizontalAlignment="Right" x:Name="megaFlyoutCloseButton" Click="megaFlyoutCloseButton_Click" VerticalAlignment="Top" Width="50" Height="50" Content="" FontFamily="Segoe MDL2 Assets">
+                    <Button.Background>
+                        <SolidColorBrush Color="{ThemeResource SystemChromeLowColor}"/>
+                    </Button.Background>
+                </Button>
+                <Button Style="{StaticResource IconButtonStyle}" Content="" Click="megaFlyoutBackButton_Click" x:Name="megaFlyoutBackButton" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" />
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

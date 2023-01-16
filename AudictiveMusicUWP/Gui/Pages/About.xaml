@@ -1,0 +1,98 @@
+﻿<Page
+    x:Class="AudictiveMusicUWP.Gui.Pages.About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignWidth="500">
+
+    <Page.Resources>
+        <Storyboard x:Key="OpenPageTransition">
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.4" To="1" Storyboard.TargetName="layoutRootScale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="layoutRoot" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <SuppressNavigationTransitionInfo />
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid>
+        <ProgressRing x:Name="progress" IsActive="true" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" Height="50" />
+        <Grid x:Name="layoutRoot" RenderTransformOrigin="0.5, 0.5" Opacity="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleX="0.9" ScaleY="0.9" x:Name="layoutRootScale" />
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <SolidColorBrush Color="{ThemeResource SystemChromeLowColor}" />
+                </Grid.Background>
+                <TextBlock x:Name="pageTitle" x:Uid="AboutTitle" Text="Sobre" VerticalAlignment="Center" Margin="12,0" FontWeight="Bold" FontSize="25" />
+                <Button Grid.Row="0" Grid.Column="1" Height="48" Tag="" x:Name="rateButton" x:Uid="RateApp" Click="rateButton_Click" Style="{StaticResource SideMenuButtonStyle}" />
+            </Grid>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled" VerticalScrollMode="Auto" ZoomMode="Disabled">
+                <Grid x:Name="contentGrid" VerticalAlignment="Center" MaxWidth="400">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
+                    </Grid.RowDefinitions>
+
+                    <Grid CornerRadius="5" Height="150" Width="150" Margin="20" HorizontalAlignment="Center">
+                        <Grid.Background>
+                            <SolidColorBrush x:Name="appColor" Color="#3a75c4" />
+                        </Grid.Background>
+                        <Image Source="ms-appx:///Assets/Logos/Square150.png" />
+                    </Grid>
+                    <TextBlock Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" x:Name="appName" FontWeight="Bold" FontSize="26" Text="Mosiq Player" />
+                    <TextBlock Grid.Row="2" TextAlignment="Center" TextWrapping="Wrap" x:Name="appVersion" Text="" />
+                    <TextBlock Grid.Row="3" TextAlignment="Center" TextWrapping="Wrap" x:Name="appCompany" FontWeight="Bold" Text="4 Directions" />
+                    <TextBlock Grid.Row="4" TextAlignment="Center" TextWrapping="Wrap" x:Name="appDeveloper" FontWeight="Bold" Text="Mirsaitov Konstantin" />
+                    <TextBlock Grid.Row="5" TextAlignment="Center" TextWrapping="Wrap" x:Name="appRightsTitle" FontSize="20" Margin="0,40,0,0" x:Uid="ForDevelopers" Text="Для разработчиков" />
+                    <TextBlock Grid.Row="5" TextAlignment="Center" TextWrapping="Wrap" Margin="0,10,0,-5" x:Name="appTagLibRight" FontWeight="Medium" Text="TagLib.Portable" />
+                    <HyperlinkButton Grid.Row="6" HorizontalAlignment="Center" x:Name="appTagLibRightButton" NavigateUri="https://www.github.com/timheuer/taglib-sharp-portable" x:Uid="MoreInfo" Content="Больше информации..." />
+                   
+
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>
