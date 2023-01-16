@@ -1,7 +1,7 @@
-# Audictive Music UWP for Windows 10
+# SOURCE code Mosiq player UWP for Windows 10
 
-Audictive Music é um reprodutor de músicas para o **Windows 10**. Entre suas principais funções encontram-se a conexão com o serviço *Last.fm* (com suporte a Scrobble) e a organização da biblioteca de músicas de seu computador ou smartphone.
+Открывайте для себя новую музыку! Слушайте свою музыку из сервиса SoundCloud в Mosiq Player. Выбирайте настроение, занятие, любимую тему или эпоху и прослушивайте свою коллекцию. Отмечайте треки, которые вам нравятся, — они сохранятся в отдельный плейлист. Собирайте свою коллекцию. Любые треки и плейлисты можно сохранить в приложении и слушать их в любое время без подключения к сети. Когда вы включаете оффлайн-режим, приложение показывает только ту музыку, которая уже была сохранена на устройстве. Попробуйте, это бесплатно. Все возможности Mosiq Player доступны бесплатно и навсегда. Так же в Mosiq Player отсутствуют какие-либо подписки или покупки. Если вам понравилось приложение, вы можете поддержать разработчика в настройках, в разделе обратная связь. 
 
-O aplicativo foi desenvolvido em C# na plataforma UWP com XAML e Sqlite, e desenhado com base no *Fluent Design* da Microsoft. Com mais de 30 mil downloads na Microsoft Store, o Audicitve Music recebeu destaque em blogs especializados do Brasil e de outras partes do mundo.
+https://apps.microsoft.com/store/detail/mosiq-player/9N5CSZFBV8C8?hl=ru-tm&gl=tm&cid=msft_web_chart
 
-Apesar de descontinuado, decidi transformá-lo em um projeto *open source*. Espero assim manter vivo um projeto que significou (e que ainda significa) muito para mim, e talvez auxiliar de alguma forma quem planeja se aventurar no desenvolvimento de aplicativos UWP.
+1961c ТЭПК 2020г Мирсаитов Константин
